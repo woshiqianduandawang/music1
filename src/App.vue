@@ -22,24 +22,8 @@ export default {
 </script>
 
 <style>
+@import url(./assets/css/base.css);
   #app{
     box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.3);
-  }
-  *{
-    margin: 0;
-    padding: 0;
-  }
-  body{
-    background-color: rgb(244, 244, 244);
-  }
-  li{
-    list-style: none;
-  }
-  a{
-    text-decoration: none;
-    color: black;
-  }
-  i{
-    font-style: normal;
   }
 </style>

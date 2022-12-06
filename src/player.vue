@@ -18,8 +18,8 @@
             <img @click="OpenorHideList" src="@/assets/img/player/list.png" alt="">
         </div>
         <!-- 播放列表的x -->
-        <span @click="OpenorHideList">×</span>
-        <ol v-if="listif">
+        <span v-show="listif" @click="OpenorHideList">×</span>
+        <ol v-show="listif">
             <li v-for="(item, index) in $store.state.songs" :key="index">
                 <p title="播放" @click="$store.commit('click',{songs: $store.state.songs, index: index})">
                     {{item.name}}-{{item.ar[0].name}}

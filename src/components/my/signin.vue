@@ -17,7 +17,7 @@
                     <input type="number" ref="phone" placeholder="请输入手机号">
                 </li>
                 <li>
-                    <input type="number" ref="captcha" placeholder="请输入短信验证码">
+                    <input type="number" ref="captcha" placeholder="短信验证码">
                 </li>
                 <span ref="disabled" :class="{'disabled': disabled}" @click="Getcaptcha">获取验证码</span>
                 <button @click="submit">登录</button>
@@ -236,6 +236,11 @@ export default {
         margin-left: 13px;
         width: 107px;
     }
+    /* input的placeholder样式 */
+    input::-webkit-input-placeholder{
+        position: absolute;
+        top: -3px;
+    }
     #a1-b2 li:nth-child(1){
         width: 217px;
     }
@@ -271,9 +276,9 @@ export default {
     #a1-b2 span:hover{
         background-color: rgb(0, 0, 0)
     }
-        /* 去掉input type=number时的箭头 */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
+    /* 去掉input type=number时的箭头 */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
         -webkit-appearance: none;
     }
     #a1-b2 button{

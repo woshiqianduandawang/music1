@@ -221,11 +221,20 @@ export default {
     #inputhbox input{
         z-index: 5;
         position: absolute;
+        top: 0px;
         left: 14px;
         border: 0;
         outline: none;
         width: 120px;
         height: 30px;
+    }
+    /* input的placeholder样式 */
+    input::-webkit-input-placeholder {
+        position: absolute;
+        top: 4px;
+        font-size: 15px;
+        line-height: 30px;
+        color: #aab2bd;
     }
     /* 搜索记录的盒子 */
     #SearchRecord{
@@ -285,11 +294,6 @@ export default {
     #SearchRouterlink{
         width: 0;
         height: 0;
-    }
-    /* input的placeholder样式 */
-    input::-webkit-input-placeholder {
-        color: #aab2bd;
-        font-size: 15px;
     }
     /* 搜索建议的盒子 */
     #SearchSuggest{
