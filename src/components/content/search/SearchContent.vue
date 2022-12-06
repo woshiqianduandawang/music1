@@ -1,4 +1,5 @@
 <template>
+    <!-- 搜索结果页面 -->
   <div v-if="searchif" id="search">
     以下是搜索{{this.$route.query.content}}的结果：
     <div id="SearchSingerBox">

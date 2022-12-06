@@ -16,8 +16,8 @@
 
 <script>
 import Network from '@/network/network'
-import Search from './search/search.vue'
-import SigninVue from './my/signin.vue';
+import Search from '@/components/content/search/search.vue'
+import SigninVue from '@/components/content/signin.vue';
 export default {
   name: 'Head',
   components: {

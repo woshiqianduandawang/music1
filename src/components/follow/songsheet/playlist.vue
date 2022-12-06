@@ -1,4 +1,5 @@
 <template>
+    <!-- 歌单页面 -->
   <div id="playlist" v-if="ruin">
     <Follow></Follow>
     <div id="PlaylistBox">

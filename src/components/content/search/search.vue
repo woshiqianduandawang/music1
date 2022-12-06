@@ -219,7 +219,6 @@ export default {
         height: 20px;
     }
     #inputhbox input{
-        z-index: 5;
         position: absolute;
         top: 0px;
         left: 14px;
@@ -227,6 +226,8 @@ export default {
         outline: none;
         width: 120px;
         height: 30px;
+        font-size: 16px;
+        z-index: 5;
     }
     /* input的placeholder样式 */
     input::-webkit-input-placeholder {
@@ -239,7 +240,7 @@ export default {
     /* 搜索记录的盒子 */
     #SearchRecord{
         position: absolute;
-        top: 28px;
+        top: 43px;
         left: -50px;
         padding: 10px;
         border-radius: 10px;
@@ -298,7 +299,7 @@ export default {
     /* 搜索建议的盒子 */
     #SearchSuggest{
         position: absolute;
-        top: 28px;
+        top: 43px;
         left: -50px;
         padding: 10px;
         border-radius: 10px;
