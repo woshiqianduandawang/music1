@@ -156,7 +156,7 @@ export default {
         top: -1040px;
         right: 358px;
         cursor: pointer;
-        z-index: 3;
+        z-index: 4;
         font-size: 25px;
         color: rgb(234, 234, 234);
     }
