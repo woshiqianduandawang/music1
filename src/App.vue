@@ -10,7 +10,7 @@
 
 <script>
 import Hade from './components/common/head.vue'
-import Player from './player.vue';
+import Player from '@/components/content/player';
 
 export default {
   name: 'App',

@@ -139,6 +139,7 @@ export default {
         position: absolute;
         top: -1040px;
         right: 332px;
+        width: 328px;
         height: 1000px;
         padding: 20px;
         padding-left: 0;

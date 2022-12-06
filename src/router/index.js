@@ -1,21 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 //发现页follow及其子组件导入
-const Empty = () => import('@/components/empty')
-const Follow = () => import('@/components/follow/follow')
-  const Suggest = () => import('@/components/follow/suggest/suggest')
-  const Ranking = () => import('@/components/follow/ranking/ranking')
-  const Songsheet = () => import('@/components/follow/songsheet/songsheet')
-  const Artist = () => import('@/components/follow/artist/artist')
-    const Hotsuggest = () => import('@/components/follow/artist/hotsuggest')
-    const Singers = () => import('@/components/follow/artist/singers')
+const Empty = () => import('@/components/content/search/empty')
+const Follow = () => import('@/views/follow/follow')
+  const Suggest = () => import('@/views/follow/suggest/suggest')
+  const Ranking = () => import('@/views/follow/ranking/ranking')
+  const Songsheet = () => import('@/views/follow/songsheet/songsheet')
+  const Artist = () => import('@/views/follow/artist/artist')
+    const Hotsuggest = () => import('@/views/follow/artist/hotsuggest')
+    const Singers = () => import('@/views/follow/artist/singers')
 
-const ArtistPage = () => import('@/components/follow/artist/ArtistPage')
+const ArtistPage = () => import('@/views/follow/artist/ArtistPage')
 const Find = () => import('@/views/find/find')
 const My = () => import('@/views/my/my')
 const Shopping = () => import('@/views/shopping/shopping')
 const SearchContent = () => import('@/components/content/search/SearchContent')
-const Playlist = () => import('@/components/follow/songsheet/playlist')
+const Playlist = () => import('@/views/follow/songsheet/playlist')
 
 Vue.use(Router)
   const routes = [

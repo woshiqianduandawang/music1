@@ -45,7 +45,7 @@
 
 <script>
 import Network from '@/network/network'
-import Animation from '@/js/animation-x'
+import Animation from '@/assets/js/animation-x'
 export default {
     name: 'Banner',
     data() {

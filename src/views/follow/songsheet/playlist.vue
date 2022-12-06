@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import Follow from '@/components/follow/follow'
+import Follow from '@/views/follow/follow'
 import Network from '@/network/network'
 
 export default {

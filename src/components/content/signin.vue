@@ -1,4 +1,5 @@
 <template>
+    <!-- 登陆界面弹窗 -->
     <div id="signin" ref="signin">
         <div id="a1">
             <p>登录
