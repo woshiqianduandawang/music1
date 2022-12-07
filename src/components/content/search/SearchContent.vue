@@ -2,18 +2,20 @@
     <!-- 搜索结果页面 -->
   <div v-if="searchif" id="search">
     以下是搜索{{this.$route.query.content}}的结果：
-    <div id="SearchSingerBox">
+    <!-- 搜索到的歌手，接口失效暂时弃用 -->
+    <!-- <div id="SearchSingerBox">
         <img :src="singer.img1v1Url" alt="">
         <span>{{singer.name}}</span>
-    </div>
+    </div> -->
     <div id="bodyofhead">
         <div>歌曲</div>
         <div>歌手</div>
     </div>
-    <li href="" v-for="(item, index) in songs" :key="index">
+    <!-- 遍历搜索歌曲响应数据 -->
+    <li v-for="(item, index) in songs" :key="index">
         <p title="播放" @click="$store.commit('click',{songs: songs, index: index})">{{item.name}}</p>
         <router-link :to="{
-          path: '/artist-singer',
+          path: '/artist-page',
           query: {data: item,id: item.ar[0].id}
         }">{{item.ar[0].name}}</router-link>
     </li>
@@ -33,23 +35,25 @@ export default {
         }
     },
     activated() {
+        // 搜索结果-歌曲
         Network({
             url: '/cloudsearch', 
             params: {
                 keywords: this.$route.query.content
             }
         }).then(({data:{result:{songs:a}}}) => {
-            this.songs = a
-            // console.log(a);
+                this.songs = a
+                // console.log(a);
         })
+        // 搜索结果-多重匹配，接口失效
         Network({
-            url: '/search/multimatch', 
+            url: '/artist/desc', 
             params: {
-                keywords: this.$route.query.content
+                id: 6452
             }
-        }).then(({data:{result:a}}) => {
-            this.singer = a.artist[0]
-            // console.log(a);
+        }).then(a => {
+            console.log(a);
+            // this.singer = a.artist[0]
         })
     },
     methods: {

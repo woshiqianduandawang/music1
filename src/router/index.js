@@ -88,12 +88,12 @@ Vue.use(Router)
             },
           ]
         },
-        // 歌手主页
-        {
-          path: 'artist-page',
-          component: ArtistPage,
-        },
       ],
+    },
+    // 歌手主页
+    {
+      path: '/artist-page',
+      component: ArtistPage,
     },
     // 关注
     {

@@ -2,7 +2,7 @@
   <div id="HotSuggest">
     <div>
       <router-link v-for="item in ClassSingers" :key="item.id"  :to="{
-        path: '/follow/artist-page',
+        path: '/artist-page',
         query: {data:item,id: item.id}
       }">
         <img :src="item.picUrl" alt="">

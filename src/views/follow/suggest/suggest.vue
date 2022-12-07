@@ -1,5 +1,6 @@
 <template>
   <div id="suggest">
+    <!-- 轮播图 -->
     <Banner></Banner>
     <div id="a1">
       <div id="a1-b1">
@@ -130,10 +131,14 @@ export default {
     font-size: 14px;
     line-height: 14px;
   }
+  #a1-b1-c1 a:hover{
+    text-decoration: underline;
+  }
   #a1-b1-c1 a span{
     position: relative;
     top:2px;
     left: 6px;
+    cursor: default;
     color: rgba(197, 197, 197, 0.5);
     font-size: 18px;
     font-weight: 200;
@@ -172,10 +177,13 @@ export default {
     position: relative;
     height: 20px;
     top: -24px;
+    border-top: 1px solid rgb(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0px 1px 5px rgb(0, 0, 0, 0.6);
     border-radius: 0 0 10px 10px;
     color: rgb(217, 217, 217);
     font-size: 14px;
-    background-color: rgb(94, 94, 94, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
   }
   #a1-b1-c2-d1 div img{
     position: absolute;

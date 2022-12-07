@@ -10,7 +10,7 @@
                 <!-- 歌单标题 -->
                 <h3>{{detail.name}}</h3>
                 <!-- 歌单作者信息 -->
-                <div id="author">
+                <div v-if="authorif" id="author">
                     <img :src="detail.creator.avatarUrl" alt="">
                     <!-- 作者昵称 -->
                     <div>
@@ -57,6 +57,7 @@ export default {
             ruin: true, //组件的v-if值，控制重新渲染数据
             detail: '', //保存歌单详情
             date: '', //保存创建该歌单时的时间戳
+            authorif: false
         }
     },
     activated() {
@@ -79,6 +80,7 @@ export default {
         }).then( ({data:{playlist:a}}) => {
             // 赋值给组件的挂载数据
             this.detail = a
+            this.authorif = true
             this.date = new Date(a.createTime)
         })
     },
