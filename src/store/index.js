@@ -39,14 +39,19 @@ export default new Vuex.Store({
                     level: 'lossless'
                 }
             }).then(({data:{data:song}}) => state.songurl = song[0].url )
-
+            .catch(arr =>{
+                alert('请求数据失败，请刷新重试！')
+            })
             // 获取歌词
             Request({
                 url: '/lyric', 
                 params: {
                     id: state.songs[state.index].id,
                 }
-            }).then(({data:{lrc:a}}) => state.lyric = a);
+            }).then(({data:{lrc:a}}) => state.lyric = a)
+            .catch(arr =>{
+                alert('请求数据失败，请刷新重试！')
+            })
         },
     }
 })

@@ -50,7 +50,11 @@ export default {
             url: '/top/artists', 
             limit: 10,
             offset: (5-1)*50
-        }).then(({data:{artists:ClassSinger}}) => this.ClassSingers = ClassSinger)
+        }).then(({data:{artists:ClassSinger}}) => 
+            this.ClassSingers = ClassSinger)
+        .catch(arr =>{
+            alert('请求数据失败，请刷新重试！')
+        })
     },
     methods: {
         
@@ -63,7 +67,11 @@ export default {
                     type: itemid, //决定获取哪个分类
                     limit: fund //获取的数量
                 }
-            }).then(({data:{artists:ClassSinger}}) => this.ClassSingers = ClassSinger)
+            }).then(({data:{artists:ClassSinger}}) => 
+                this.ClassSingers = ClassSinger)
+            .catch(arr =>{
+                alert('请求数据失败，请刷新重试！')
+            })
         },
         // 获取更多歌手
         click2() {

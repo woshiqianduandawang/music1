@@ -31,6 +31,8 @@ export default {
         }
       }).then(({data:{artists:ClassSinger}}) => {
         this.ClassSingers = ClassSinger
+      }).catch(arr =>{
+        alert('请求数据失败，请刷新重试！')
       })
     },
     destroyed () {

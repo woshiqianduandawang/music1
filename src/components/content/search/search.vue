@@ -138,7 +138,11 @@ export default {
                     params: {
                         keywords: this.value
                     }
-                }).then( ({data:{result:a}}) => this.suggest = a)
+                })
+                .then( ({data:{result:a}}) => this.suggest = a)
+                .catch(arr =>{
+                    alert('请求数据失败，请刷新重试！')
+                })
             }, 500)
         },
         focus() {

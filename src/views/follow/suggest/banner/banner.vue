@@ -67,6 +67,8 @@ export default {
         }).then( ({data:{banners:banners}}) => {
             this.banners = banners
             this.connect = true //得到数据后控制首位无缝衔接的bom的v-if
+        }).catch(arr =>{
+            alert('请求数据失败，请刷新重试！')
         })
         // 设置自动轮播定时器
         this.timer = setInterval(() => {

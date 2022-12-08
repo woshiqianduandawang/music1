@@ -93,6 +93,8 @@ export default {
           this.category.theme = a.sub.filter((value,index) => {
             return value.category == 4
           })
+        }).catch(arr =>{
+          alert('请求数据失败，请刷新重试！')
         })
     },
     methods: {

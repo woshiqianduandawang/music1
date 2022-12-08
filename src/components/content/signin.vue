@@ -57,9 +57,15 @@ export default {
                     key: this.key,
                 }
             }).then( a => console.log(a))
+            .catch(arr =>{
+                alert('请求数据失败，请刷新重试！')
+            })
             Request({
                 url: '/login/status',
             }).then( c => console.log(c))
+            .catch(arr =>{
+                alert('请求数据失败，请刷新重试！')
+            })
         },
         shift() {
             // 切换登录方式
@@ -71,29 +77,31 @@ export default {
             this.phone = this.$refs.phone.value
             // 正则表达式匹配正确的手机号码
             if(this.regexp.test(this.phone)) {
-                // 发送网络请求
-                Request({
-                url: '/captcha/sent',
-                params: {
-                    phone: this.phone,
-                }
-            }).then( a => {
-                console.log(a)
-                // 停用按钮并开启倒计时
-                this.disabled = true
-                let time = 60
-                this.$refs.disabled.innerHTML = time
-                const timer = setInterval(() => {
-                    time--
-                    this.$refs.disabled.innerHTML = time
-                    if(time == 0) {
-                        // 倒计时结束，还原到刚开始的状态
-                        clearInterval(timer)
-                        this.disabled = false
-                        this.$refs.disabled.innerHTML = '获取验证码'
+                    // 发送网络请求
+                    Request({
+                    url: '/captcha/sent',
+                    params: {
+                        phone: this.phone,
                     }
-                },1000)
-            })
+                }).then( a => {
+                    console.log(a)
+                    // 停用按钮并开启倒计时
+                    this.disabled = true
+                    let time = 60
+                    this.$refs.disabled.innerHTML = time
+                    const timer = setInterval(() => {
+                        time--
+                        this.$refs.disabled.innerHTML = time
+                        if(time == 0) {
+                            // 倒计时结束，还原到刚开始的状态
+                            clearInterval(timer)
+                            this.disabled = false
+                            this.$refs.disabled.innerHTML = '获取验证码'
+                        }
+                    },1000)
+                }).catch(arr =>{
+                    alert('请求数据失败，请刷新重试！')
+                })
             }else {
                 // 提示错误的手机号码
                 alert('请输入正确的手机号码')
@@ -144,6 +152,8 @@ export default {
                         }
                     }).then( c => console.log(c))
                 })
+            }).catch(arr =>{
+                alert('请求数据失败，请刷新重试！')
             })
         // 设置弹出登录窗口的遮罩层
         this.$refs.signin.style.width = window.innerWidth + 'px'

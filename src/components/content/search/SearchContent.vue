@@ -44,6 +44,8 @@ export default {
         }).then(({data:{result:{songs:a}}}) => {
                 this.songs = a
                 // console.log(a);
+        }).catch(arr =>{
+            alert('请求数据失败，请刷新重试！')
         })
         // 搜索结果-多重匹配，接口失效
         Request({
@@ -54,6 +56,8 @@ export default {
         }).then(a => {
             console.log(a);
             // this.singer = a.artist[0]
+        }).catch(arr =>{
+            alert('请求数据失败，请刷新重试！')
         })
     },
     methods: {

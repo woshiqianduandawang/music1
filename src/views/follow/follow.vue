@@ -33,7 +33,7 @@ export default {
     Request({
       url: '/homepage/block/page',
     }).then( a => {
-      console.log(a);
+      // console.log(a);
     })
   }
 }
