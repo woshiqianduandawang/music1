@@ -44,7 +44,7 @@
 
 <script>
 import Follow from '@/views/follow/follow'
-import Network from '@/network/network'
+import Request from '@/network/request'
 
 export default {
     name: 'Playlist',
@@ -62,7 +62,7 @@ export default {
     },
     activated() {
         // 获取歌单歌曲
-        Network({
+        Request({
             url: '/playlist/track/all',
             params: {
                 id: this.$route.query.id
@@ -72,7 +72,7 @@ export default {
             this.ruin = true
         })
         //获取歌单详情
-        Network({
+        Request({
             url: '/playlist/detail',
             params: {
                 id: this.$route.query.id

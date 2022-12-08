@@ -8,12 +8,7 @@
       <li>
         <p>语种：</p>
         <div>
-          <router-link :to="{
-            path: '/follow/songsheet',
-            query: {
-              cat: item.name
-            }
-          }" v-for="item in category.languages" :key="item.id">
+          <router-link to="" @click.native="jump(item.name)" v-for="item in category.languages" :key="item.id">
             {{item.name}}<span>I</span>
           </router-link>
         </div>
@@ -22,12 +17,7 @@
       <li>
         <p>风格：</p>
         <div>
-          <router-link :to="{
-            path: '/follow/songsheet',
-            query: {
-              cat: item.name
-            }
-          }" v-for="item in category.style" :key="item.id">
+          <router-link to="" @click.native="jump(item.name)" v-for="item in category.style" :key="item.id">
             {{item.name}}<span>I</span>
           </router-link>
         </div>
@@ -36,12 +26,7 @@
       <li>
         <p>场景：</p>
         <div>
-          <router-link :to="{
-            path: '/follow/songsheet',
-            query: {
-              cat: item.name
-            }
-          }" v-for="item in category.scene" :key="item.id">
+          <router-link to="" @click.native="jump(item.name)" v-for="item in category.scene" :key="item.id">
             {{item.name}}<span>I</span>
           </router-link>
         </div>
@@ -50,12 +35,7 @@
       <li>
         <p>情感：</p>
         <div>
-          <router-link :to="{
-            path: '/follow/songsheet',
-            query: {
-              cat: item.name
-            }
-          }" v-for="item in category.emotion" :key="item.id">
+          <router-link to="" @click.native="jump(item.name)" v-for="item in category.emotion" :key="item.id">
             {{item.name}}<span>I</span>
           </router-link>
         </div>
@@ -64,12 +44,7 @@
       <li>
         <p>情感：</p>
         <div>
-          <router-link :to="{
-            path: '/follow/songsheet',
-            query: {
-              cat: item.name
-            }
-          }" v-for="item in category.theme" :key="item.id">
+          <router-link to="" @click.native="jump(item.name)" v-for="item in category.theme" :key="item.id">
             {{item.name}}<span>I</span>
           </router-link>
         </div>
@@ -79,7 +54,7 @@
 </template>
 
 <script>
-import Network from '@/network/network'
+import Request from '@/network/request'
 
 export default {
     name: 'ClassBox',
@@ -99,7 +74,7 @@ export default {
     },
     created() {
         // 请求歌单的分类
-        Network({
+        Request({
           url: '/playlist/catlist',
         }).then( ({data:a}) => {
             // 根据category属性的不同将得到的数据分别放进对应的数组
@@ -143,6 +118,16 @@ export default {
       },
       mouseleave() {
         this.mouseov = false
+      },
+      // 跳转到某分类下的歌单
+      jump(name) {
+        this.$router.push({
+          path: '/follow/songsheet',
+          query: {
+            cat: name
+          }
+        })
+        this.ClassShow = false
       }
     }
 }

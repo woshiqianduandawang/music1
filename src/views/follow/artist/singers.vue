@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Network from '@/network/network'
+import Request from '@/network/request'
 
 export default {
   name: 'Singers',
@@ -26,7 +26,7 @@ export default {
   },
   created () {
     this.GetClassSingers = () => {
-      Network({
+      Request({
         url: '/artist/list', 
         params: {
           type: this.$route.query.type, 

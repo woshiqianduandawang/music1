@@ -10,7 +10,7 @@
 
 <script>
 
-import Network from '@/network/network'
+import Request from '@/network/request'
 
 export default {
     name: 'ArtistPage',
@@ -28,7 +28,7 @@ export default {
     },
     activated() {
         // 获取歌手歌曲
-        Network({
+        Request({
             url: '/artist/songs', 
             params: {
                 id: this.$route.query.id

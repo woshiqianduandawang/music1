@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Network from '@/network/network'
+import Request from '@/network/request'
 
 export default {
     name: 'Artist',
@@ -46,7 +46,7 @@ export default {
     },
     created () {
         // 默认获取热门歌手
-        Network({
+        Request({
             url: '/top/artists', 
             limit: 10,
             offset: (5-1)*50
@@ -57,7 +57,7 @@ export default {
         // 获取某分类下的歌手
         click1(itemid, fund) {
             this.classnumb = itemid //保存歌手的数量
-            Network({
+            Request({
                 url: '/artist/list', 
                 params: {
                     type: itemid, //决定获取哪个分类

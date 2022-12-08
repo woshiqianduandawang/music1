@@ -79,7 +79,7 @@
 </template>
 
 <script>
-import Network from '@/network/network'
+import Request from '@/network/request'
 export default {
     name: 'Search',
     data() {
@@ -132,7 +132,7 @@ export default {
                 clearTimeout(this.timeout)
             }
             this.timeout = setTimeout(() => {
-                Network({
+                Request({
                     // 发送搜索建议网络请求
                     url: '/search/suggest', 
                     params: {

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Hade from './components/common/head.vue'
+import Hade from './components/content/head.vue'
 import Player from '@/components/content/player';
 
 export default {

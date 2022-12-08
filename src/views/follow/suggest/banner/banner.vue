@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import Network from '@/network/network'
+import Request from '@/network/request'
 import Animation from '@/assets/js/animation-x'
 export default {
     name: 'Banner',
@@ -59,7 +59,7 @@ export default {
     },
     created() {
         // 发送网络请求
-      Network({
+      Request({
           url: '/banner',
           params: {
             type: 1,

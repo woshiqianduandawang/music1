@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Network from '@/network/network'
+import Request from '@/network/request'
 import Search from '@/components/content/search/search.vue'
 import SigninVue from '@/components/content/signin.vue';
 export default {
@@ -30,10 +30,10 @@ export default {
   },
   methods: {
     cc() {
-      Network({
+      Request({
         url: '/login/refresh',
       }).then( b => console.log(b))
-      Network({
+      Request({
         url: '/login/status',
       }).then( a => console.log(a))
     }

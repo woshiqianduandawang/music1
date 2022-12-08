@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from 'vuex'
-import Network from '@/network/network'
+import Request from '@/network/request'
 
 
 Vue.use(Vuex)
@@ -32,7 +32,7 @@ export default new Vuex.Store({
                 state.stoporplay = !state.stoporplay
             }
             //获取歌曲url
-            Network({
+            Request({
                 url: '/song/url/v1', 
                 params: {
                     id: state.songs[state.index].id,
@@ -41,7 +41,7 @@ export default new Vuex.Store({
             }).then(({data:{data:song}}) => state.songurl = song[0].url )
 
             // 获取歌词
-            Network({
+            Request({
                 url: '/lyric', 
                 params: {
                     id: state.songs[state.index].id,

@@ -64,7 +64,7 @@
 </template>
 <script>
 import Banner from './banner/banner.vue'
-import Network from '@/network/network'
+import Request from '@/network/request'
 export default {
     name: 'Suggest',
     components: {
@@ -86,7 +86,7 @@ export default {
     },
     },
     created() {
-      Network({
+      Request({
         url: '/top/playlist',
         params: {
           limit: 10

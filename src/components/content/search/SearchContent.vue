@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Network from '@/network/network'
+import Request from '@/network/request'
 
 export default {
     name: 'SearchContent',
@@ -36,7 +36,7 @@ export default {
     },
     activated() {
         // 搜索结果-歌曲
-        Network({
+        Request({
             url: '/cloudsearch', 
             params: {
                 keywords: this.$route.query.content
@@ -46,7 +46,7 @@ export default {
                 // console.log(a);
         })
         // 搜索结果-多重匹配，接口失效
-        Network({
+        Request({
             url: '/artist/desc', 
             params: {
                 id: 6452

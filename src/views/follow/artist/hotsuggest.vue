@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Network from '@/network/network'
+import Request from '@/network/request'
 
 export default {
     name: 'HotSuggest',
@@ -24,7 +24,7 @@ export default {
     },
     created () {
       //获取热门歌手信息
-      Network({
+      Request({
         url: '/top/artists', 
         params: {
           limit: 24 

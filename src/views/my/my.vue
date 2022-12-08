@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Network from '@/network/network'
+import Request from '@/network/request'
 export default {
   neme: 'My',
   methods: {

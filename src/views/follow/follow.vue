@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import Request from '@/network/request'
 
 export default {
   name: 'Follow',
@@ -28,6 +29,13 @@ export default {
   },
   methods: {
   },
+  created() {
+    Request({
+      url: '/homepage/block/page',
+    }).then( a => {
+      console.log(a);
+    })
+  }
 }
 </script>
 

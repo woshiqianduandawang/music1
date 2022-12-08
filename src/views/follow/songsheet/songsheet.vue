@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import Network from '@/network/network'
+import Request from '@/network/request'
 import ClassBoxVue from './ClassBox.vue'
 export default {
   name: 'SongSheet',
@@ -44,7 +44,7 @@ export default {
   },
   created() {
     // 请求歌单数据
-    Network({
+    Request({
       url: '/top/playlist',
     }).then( ({data:{playlists:a}}) => {
       this.tags = a
@@ -52,15 +52,19 @@ export default {
   },
   watch: {
     '$route.query.cat': function(newval, oldval) {
-      this.tags = ''
-      Network({
-        url: '/top/playlist/highquality',
-        params: {
-          cat: this.$route.query.cat
-        }
-      }).then( ({data:{playlists:b}}) => {
-          this.tags = b;
-      })
+      // 当$route.query.cat存在时才发送网络请求，防止闪烁
+      if(newval){
+        this.tags = '' //页面发生变化时，防止闪烁
+        Request({
+          url: '/top/playlist/highquality',
+          params: {
+            cat: this.$route.query.cat
+          }
+        }).then( ({data:{playlists:b}}) => {
+            this.tags = b;
+        })
+      }
+      
       
     }
   },
