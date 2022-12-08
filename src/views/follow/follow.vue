@@ -30,11 +30,14 @@ export default {
   methods: {
   },
   created() {
-    Request({
-      url: '/homepage/block/page',
-    }).then( a => {
-      // console.log(a);
-    })
+    // Request({
+    //   url: '/artist/desc',
+    //   params: {
+    //     id: 11972054
+    //   }
+    // }).then( a => {
+    //   console.log(a);
+    // })
   }
 }
 </script>

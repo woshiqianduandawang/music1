@@ -3,7 +3,7 @@
     <div>
       <router-link v-for="item in ClassSingers" :key="item.id"  :to="{
         path: '/artist-page',
-        query: {data:item,id: item.id}
+        query: {id: item.id}
       }">
         <img :src="item.picUrl" alt="">
         <span>{{item.name}}</span>

@@ -2,22 +2,29 @@
     <!-- 搜索结果页面 -->
   <div v-if="searchif" id="search">
     以下是搜索{{this.$route.query.content}}的结果：
-    <!-- 搜索到的歌手，接口失效暂时弃用 -->
-    <!-- <div id="SearchSingerBox">
+    <!-- 遍历搜索到的歌手 -->
+    <router-link id="SearchSingerBox" :to="{
+        path:'/artist-page',
+        query:{
+            id: singer.id
+        }
+    }" v-show="SingerShow" >
         <img :src="singer.img1v1Url" alt="">
         <span>{{singer.name}}</span>
-    </div> -->
+    </router-link>
     <div id="bodyofhead">
         <div>歌曲</div>
         <div>歌手</div>
     </div>
-    <!-- 遍历搜索歌曲响应数据 -->
+    <!-- 遍历搜索歌曲 -->
     <li v-for="(item, index) in songs" :key="index">
         <p title="播放" @click="$store.commit('click',{songs: songs, index: index})">{{item.name}}</p>
         <router-link :to="{
           path: '/artist-page',
           query: {data: item,id: item.ar[0].id}
-        }">{{item.ar[0].name}}</router-link>
+        }">
+            {{item.ar[0].name}}
+        </router-link>
     </li>
   </div>
 </template>
@@ -29,12 +36,16 @@ export default {
     name: 'SearchContent',
     data() {
         return {
-            songs: '',
-            singer: '',
-            searchif: true
+            songs: '', //搜索到的歌曲
+            singer: '', //搜索到的歌手
+            searchif: true, //是否重新渲染页面
+            SingerShow: false //是否显示搜索到的歌手
         }
     },
     activated() {
+        this.singer = ''
+        this.SingerShow = false
+        this.searchif = false
         // 搜索结果-歌曲
         Request({
             url: '/cloudsearch', 
@@ -43,19 +54,23 @@ export default {
             }
         }).then(({data:{result:{songs:a}}}) => {
                 this.songs = a
+                this.searchif = true
                 // console.log(a);
         }).catch(arr =>{
             alert('请求数据失败，请刷新重试！')
         })
-        // 搜索结果-多重匹配，接口失效
+        // 搜索结果-多重匹配
         Request({
-            url: '/artist/desc', 
+            url: '/search/multimatch', 
             params: {
-                id: 6452
+                keywords: this.$route.query.content
             }
-        }).then(a => {
+        }).then(({data:{result:a}}) => {
             console.log(a);
-            // this.singer = a.artist[0]
+            if(a.artist){
+                this.SingerShow = true
+                this.singer = a.artist[0]
+            }
         }).catch(arr =>{
             alert('请求数据失败，请刷新重试！')
         })
@@ -73,16 +88,19 @@ export default {
     width: 1280px;
 }
 #SearchSingerBox{
+    display: block;
     padding-top: 20px ;
     width: 150px;
     height: 150px;
-    /* background-color: rgb(151, 33, 33); */
     text-align: center;
 }
-span{
+#SearchSingerBox span{
     display: block;
 }
-img{
+#SearchSingerBox span:hover{
+    text-decoration:underline ;
+}
+#SearchSingerBox img{
     border-radius: 50px;
     width: 100px;
     height: 100px;
@@ -122,13 +140,13 @@ p{
 p:hover{
     color: #fff;
 }
-a{
+li a{
     position: absolute;
     left: 50%;
     text-decoration: none;
     color: black;
 }
-a:hover{
+li a:hover{
     color: #fff;
 }
 </style>

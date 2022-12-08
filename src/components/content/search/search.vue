@@ -4,7 +4,7 @@
         <!-- inpu盒子和路由跳转 -->
         <div id="inputhbox">
             <input type="text"
-                    placeholder="歌手/歌曲/用户"
+                    placeholder="歌手/歌曲/歌单"
                         @input="input"
                             @focus="focus"
                                 @blur="blur"
@@ -271,7 +271,7 @@ export default {
     }
     #SearchRecord li p{
         float: left;
-        width: 84px;
+        width: 266px;
         overflow: hidden;
         white-space: nowrap;
     }

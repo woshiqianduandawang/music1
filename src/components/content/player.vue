@@ -12,13 +12,12 @@
             <img v-if="!$store.state.stoporplay" @click="stop" src="@/assets/img/player/Player-stop.png" alt="">
             <!-- 下一首 -->
             <img @click="next" src="@/assets/img/player/Player-next.png" alt="">
-        </div>
-        <div id="listbox">
-            <!-- 打开播放列表 -->
+            <!-- 播放列表按钮 -->
             <img @click="OpenorHideList" src="@/assets/img/player/list.png" alt="">
         </div>
         <!-- 播放列表的x -->
         <span v-show="listif" @click="OpenorHideList">×</span>
+        <!-- 播放列表 -->
         <ol v-show="listif">
             <li v-for="(item, index) in $store.state.songs" :key="index">
                 <p title="播放" @click="$store.commit('click',{songs: $store.state.songs, index: index})">
@@ -77,14 +76,18 @@ export default {
             })
         },
         focus() {
+            // 获得焦点显示播放器
+            // console.log('获得');
             clearInterval(this.timer)
             const player = document.querySelector('#player')
             player.style.bottom = 0 + 'px'
         },
         mouseleave() {
+            // 失去焦点隐藏播放器
+            // console.log('失去');
             this.timer = setInterval(function() {
                 player.style.bottom = -58 + 'px'
-            }, 3000)
+            }, 4000)
         },
         // 显示播放列表
         OpenorHideList() {
@@ -96,7 +99,7 @@ export default {
         const player = document.querySelector('#player')
         this.timer = setInterval(function() {
             player.style.bottom = -58 + 'px'
-        }, 3000)
+        }, 4000)
         
     }
 }
@@ -128,10 +131,10 @@ export default {
         height: 30px;
         cursor: pointer
     }
-    #listbox img{
+    #imgbox img:nth-last-child(1){
         position: absolute;
-        top: 30px;
-        right: 608px;
+        top: 5px;
+        left: 120px;
         width: 20px;
         height: 20px;
     }

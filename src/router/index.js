@@ -10,7 +10,10 @@ const Follow = () => import('@/views/follow/follow')
     const Hotsuggest = () => import('@/views/follow/artist/hotsuggest')
     const Singers = () => import('@/views/follow/artist/singers')
 
-const ArtistPage = () => import('@/views/follow/artist/ArtistPage')
+const ArtistPage = () => import('@/views/follow/artist/ArtistPage/ArtistPage')
+  const HotSongs = () => import('@/views/follow/artist/ArtistPage/HotSongs')
+  const Desc = () => import('@/views/follow/artist/ArtistPage/desc')
+
 const Find = () => import('@/views/find/find')
 const My = () => import('@/views/my/my')
 const Shopping = () => import('@/views/shopping/shopping')
@@ -94,6 +97,20 @@ Vue.use(Router)
     {
       path: '/artist-page',
       component: ArtistPage,
+      children: [
+        {
+          path: '',
+          redirect: 'hotsongs'
+        },
+        {
+          path: 'hotsongs',
+          component: HotSongs,
+        },
+        {
+          path: 'desc',
+          component: Desc,
+        },
+      ]
     },
     // 关注
     {
