@@ -62,7 +62,6 @@ export default {
                 id: this.$route.query.id
             }
         }).then(({data:{data:a}}) => {
-            console.log(a);
             this.SingerData = a
             this.liveif = true
         }).catch(arr =>{

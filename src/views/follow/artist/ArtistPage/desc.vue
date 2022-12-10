@@ -11,7 +11,7 @@
 import Request from '@/network/request'
 
 export default {
-    name: 'Desc',
+    name: 'SingerDesc',
     data() {
         return {
             SingerData: '',
@@ -25,7 +25,6 @@ export default {
                 id: this.$route.query.id
             }
         }).then(({data:{data:{artist:a}}}) => {
-            console.log(a);
             this.SingerData = a
         }).catch(arr =>{
             alert('请求数据失败，请刷新重试！')

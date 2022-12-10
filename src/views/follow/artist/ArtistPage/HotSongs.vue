@@ -1,7 +1,7 @@
 <template>
-  <div id="a1">
+  <div id="a1" v-show="show">
     <div id="a1-b1">
-        <li @click="$store.commit('click',{songs: songs, index: index})" v-for="(item, index) in songs" :key="index">
+        <li @click="$store.commit('PlayMusic',{songs: songs, index: index})" v-for="(item, index) in songs" :key="index">
             <p >{{item.name}} — {{item.ar[0].name}}</p>
         </li>
     </div>
@@ -15,23 +15,43 @@ export default {
     name: 'HotSongs',
     data() {
         return {
-            songs: '',
+            songs: null,
+            oldsongs: null,
+            show: false
         }
     },
-    activated() {
+    methods: {
         // 获取歌手歌曲
-        Request({
-            url: '/artist/songs', 
-            params: {
-                id: this.$route.query.id
-            }
-        }).then(({data:{songs:songss}}) => {
-            this.songs = songss
-            if(songss){
-            }
-        }).catch(arr =>{
-            alert('请求数据失败，请刷新重试！')
-        })
+        GetSongs() {
+            Request({
+                url: '/artist/songs', 
+                params: {
+                    id: this.$route.query.id
+                }
+            }).then(({data:{songs:songss}}) => {
+                this.songs = songss
+                this.show = true
+            }).catch(arr =>{
+                alert('请求数据失败，请刷新重试！')
+            })
+        }
+    },
+    created() {
+        // 生成组件前获取歌曲
+        this.GetSongs()
+    },
+    activated() {
+        // 判断是否是同一个歌手页面
+        if(this.$route.query.id != this.oldid) {
+            this.GetSongs()
+        }else {
+            this.show = true
+        }
+    },
+    deactivated() {
+        // 离开组件隐藏组件并且保存当前歌手id
+        this.show = false
+        this.oldid = this.id
     }
 }
 </script>

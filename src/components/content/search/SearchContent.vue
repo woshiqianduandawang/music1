@@ -18,7 +18,7 @@
     </div>
     <!-- 遍历搜索歌曲 -->
     <li v-for="(item, index) in songs" :key="index">
-        <p title="播放" @click="$store.commit('click',{songs: songs, index: index})">{{item.name}}</p>
+        <p title="播放" @click="$store.commit('PlayMusic',{songs: songs, index: index})">{{item.name}}</p>
         <router-link :to="{
           path: '/artist-page',
           query: {data: item,id: item.ar[0].id}

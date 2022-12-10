@@ -21,6 +21,7 @@ const SearchContent = () => import('@/components/content/search/SearchContent')
 const Playlist = () => import('@/views/follow/songsheet/playlist')
 
 Vue.use(Router)
+
   const routes = [
     {
       //重定向
@@ -35,6 +36,9 @@ Vue.use(Router)
     {
       path: '/follow',
       component: Follow,
+      meta: {
+        title: '发现'
+      },
       children: [
         {
           path: '',
@@ -43,17 +47,26 @@ Vue.use(Router)
         // 发现页>推荐
         {
           path: 'suggest',
-          component: Suggest
+          component: Suggest,
+          meta: {
+            title: '发现'
+          },
         },
         // 发现页>排行榜
         {
           path: 'ranking',
-          component: Ranking
+          component: Ranking,
+          meta: {
+            title: '排行榜'
+          },
         },
         // 发现页>歌单
         {
           path: 'songsheet',
-          component: Songsheet
+          component: Songsheet,
+          meta: {
+            title: '歌单'
+          },
         },
         //发现页>歌手
         {
@@ -67,7 +80,10 @@ Vue.use(Router)
               // 热门歌手
             {
               path: 'hotsuggest',
-              component: Hotsuggest
+              component: Hotsuggest,
+              meta: {
+                title: '歌手'
+              },
             },
             // 男歌手
             {
@@ -116,16 +132,25 @@ Vue.use(Router)
     {
       path: '/find',
       component: Find,
+      meta: {
+        title: '关注'
+      },
     },
     // 我的
     {
       path: '/my',
       component: My,
+      meta: {
+        title: '我的音乐'
+      },
     },
     // 商城
     {
       path: '/shopping',
       component: Shopping,
+      meta: {
+        title: '商城'
+      },
     },
     // 搜索结果
     {
@@ -144,6 +169,7 @@ Vue.use(Router)
     mode: 'history'
   })
   router.beforeEach((to, from, next) => {
+    document.title = to.meta.title
     next()
   })
 export default router

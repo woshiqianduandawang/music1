@@ -14,6 +14,7 @@
         <router-link to="/follow/artist">歌手</router-link>
       </div>
     </div>
+    
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -22,10 +23,12 @@
 
 <script>
 import Request from '@/network/request'
+import suggestVue from './suggest/suggest.vue';
 
 export default {
   name: 'Follow',
   components: {
+    suggestVue
   },
   methods: {
   },
@@ -74,11 +77,11 @@ export default {
     color: #fff;
   }
   a:hover{
-    background-color: rgb(29, 29, 29);
+    background-color: rgb(29, 29, 29, 0.6);
     color: #fff;
   }
   .active{
-    background-color: rgb(29, 29, 29);
+    background-color: rgb(29, 29, 29, 0.6);
     color: #fff;
   }
 </style>

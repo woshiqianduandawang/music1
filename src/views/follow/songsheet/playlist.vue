@@ -23,7 +23,7 @@
                             {{item}}&ensp;
                         </p>
                     </div>
-                    <button @click="$store.commit('click',{songs: songs, index: 0})">播放</button>
+                    <button @click="$store.commit('PlayMusic',{songs: songs, index: 0})">播放</button>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
             <div>歌手</div>
         </div>
         <li href="" v-for="(item, index) in songs" :key="index">
-            <p title="播放" @click="$store.commit('click',{songs: songs, index: index})">{{item.name}}</p>
+            <p title="播放" @click="$store.commit('PlayMusic',{songs: songs, index: index})">{{item.name}}</p>
             <router-link :to="{
             path: '/artist-singer',
             query: {data: item,id: item.ar[0].id}

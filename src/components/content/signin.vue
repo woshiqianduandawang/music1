@@ -107,6 +107,7 @@ export default {
                 alert('请输入正确的手机号码')
             }
         },
+        // 登录
         submit() {
             this.phone = this.$refs.phone.value
             const captcha = this.$refs.captcha.value

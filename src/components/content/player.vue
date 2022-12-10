@@ -62,7 +62,7 @@ export default {
             if(this.$store.state.index == 0) {
                 alert('已经是第一首了')
             } else{
-                this.$store.commit('click', {
+                this.$store.commit('PlayMusic', {
                     songs: this.$store.state.songs,
                     index: this.$store.state.index - 1
                 })
@@ -70,7 +70,7 @@ export default {
         },
         //下一首
         next() {
-            this.$store.commit('click', {
+            this.$store.commit('PlayMusic', {
                 songs: this.$store.state.songs,
                 index: this.$store.state.index + 1
             })
