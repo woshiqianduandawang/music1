@@ -49,7 +49,7 @@
         <div id="a1-b1-c2">
           <div id="a1-b1-c2-d1" v-for="(item, index) in tags" :key="index" @click="click(item.id)">
             <!-- 歌单头像 -->
-            <img :src="item.coverImgUrl" alt="">
+            <img :src="item.coverImgUrl + '?param=130y130'" alt="">
             <!-- 歌单的播放量小条 -->
             <div>
               <img src="@/assets/img/songsheet/play.png" alt="">
@@ -75,7 +75,7 @@
             <ol id="a1-b1-c4-d1" ref="ol">
               <!-- 遍历所有新碟的li -->
               <li v-for="(item, index) in monthData" :key="index" @click="jump(item.id)">
-                <img :src="item.picUrl" alt="">
+                <img :src="item.picUrl + '?param=130y130'" alt="">
                 <img src="@/assets/img/background.png" alt="">
                 <p>{{item.name}}</p>
                 <p>{{item.artist.name}}</p>
@@ -307,7 +307,7 @@ export default {
   #a1-b1-c4 #img{
     position: fixed;
     top: 670px;
-    width: 30px;
+    width: 26px;
     height: 30px;
     font-size: 30px;
     font-weight: 700;
@@ -322,7 +322,7 @@ export default {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    width: 970px;
+    width: 965px;
     height: 100%;
     overflow: hidden;
   }

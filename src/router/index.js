@@ -72,40 +72,6 @@ Vue.use(Router)
         {
           path: 'artist',
           component: Artist,
-          children: [
-            {
-              path: '',
-              redirect: 'hotsuggest'
-            },
-              // 热门歌手
-            {
-              path: 'hotsuggest',
-              component: Hotsuggest,
-              meta: {
-                title: '歌手'
-              },
-            },
-            // 男歌手
-            {
-              path: 'amlesinger',
-              component: Singers
-            },
-            // 女歌手
-            {
-              path: 'femalesinger',
-              component: Singers
-            },
-            // 乐队
-            {
-              path: 'band',
-              component: Singers
-            },
-            // 全部
-            {
-              path: 'whole',
-              component: Singers
-            },
-          ]
         },
       ],
     },

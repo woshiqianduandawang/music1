@@ -57,9 +57,9 @@ export default {
 </script>
 
 <style scoped>
-    #a1{
-        /* position: relative; */
-    }
+    /* #a1{
+        position: relative;
+    } */
     #a1-b1{
         position: absolute;
         width: 1280px;
