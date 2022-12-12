@@ -15,6 +15,7 @@ export default {
     data() {
         return {
             SingerData: '',
+            show: true
         }
     },
     activated() {
@@ -30,6 +31,9 @@ export default {
             alert('请求数据失败，请刷新重试！')
         })
     },
+    deactivated() {
+        this.show = false
+    }
 }
 </script>
 
@@ -40,7 +44,7 @@ export default {
     #a1-b1{
         position: absolute;
         width: 1280px;
-        top: 1027px;
+        top: 387px;
         left: 50%;
         transform: translateX(-50%);
         padding: 30px;

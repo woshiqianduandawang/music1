@@ -1,5 +1,5 @@
 <template>
-  <div id="a1" v-show="show">
+  <div id="a1" v-if="show">
     <div id="a1-b1">
         <li @click="$store.commit('PlayMusic',{songs: songs, index: index})" v-for="(item, index) in songs" :key="index">
             <p >{{item.name}} — {{item.ar[0].name}}</p>
@@ -16,7 +16,6 @@ export default {
     data() {
         return {
             songs: null,
-            oldsongs: null,
             show: false
         }
     },
@@ -41,29 +40,23 @@ export default {
         this.GetSongs()
     },
     activated() {
-        // 判断是否是同一个歌手页面
-        if(this.$route.query.id != this.oldid) {
-            this.GetSongs()
-        }else {
-            this.show = true
-        }
+        this.GetSongs()
     },
     deactivated() {
         // 离开组件隐藏组件并且保存当前歌手id
         this.show = false
-        this.oldid = this.id
     }
 }
 </script>
 
 <style scoped>
-    /* #a1{
+    #a1{
         position: relative;
-    } */
+    }
     #a1-b1{
         position: absolute;
         width: 1280px;
-        top: 1027px;
+        top: 387px;
         left: 50%;
         transform: translateX(-50%);
         padding: 80px;

@@ -2,10 +2,22 @@
   <div id="tabbar">
     <div id="tabbox">
       <!-- 头部tab部分 -->
-      <router-link to="/follow">发现音乐</router-link>
-      <router-link to="/find">关注</router-link>
-      <router-link to="/my">我的音乐</router-link>
-      <router-link to="/shopping">商城</router-link>
+      <router-link @click.native="index=0" to="/follow">
+        发现音乐
+        <sub v-show="index==0"></sub>
+      </router-link>
+      <router-link @click.native="index=1" to="/find">
+        关注
+        <sub v-show="index==1"></sub>
+      </router-link>
+      <router-link @click.native="index=2" to="/my">
+        我的音乐
+        <sub v-show="index==2"></sub>
+      </router-link>
+      <router-link @click.native="index=3" to="/shopping">
+        商城
+        <sub v-show="index==3"></sub>
+      </router-link>
       <Search></Search>
       <p @click="$store.commit('close',true)">登录</p>
       <!-- <button @click="cc">查询</button> -->
@@ -26,6 +38,7 @@ export default {
   },
   data() {
     return {
+      index: 0
     }
   },
   methods: {
@@ -67,6 +80,7 @@ export default {
     line-height: 65px;
     font-size: 18px;
     text-decoration: none;
+    overflow: hidden;
   }
   a:hover {
     background-color:rgb(29, 29, 29);
@@ -79,6 +93,16 @@ export default {
     cursor: pointer;
     color: #fff;
     font-size: 16px;
+  }
+  sub{
+    display: block;
+    position: relative;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%) rotateZ(45deg) ;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 0, 0);
   }
   .active{
     background-color: rgb(29, 29, 29);

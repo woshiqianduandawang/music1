@@ -14,7 +14,6 @@
         <router-link to="/follow/artist">歌手</router-link>
       </div>
     </div>
-    
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -56,6 +55,7 @@ export default {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    padding-left: 73px;
     width: 1280px;
     height: 100%;
   }

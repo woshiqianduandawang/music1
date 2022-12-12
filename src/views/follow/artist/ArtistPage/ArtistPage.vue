@@ -1,9 +1,9 @@
 <template>
-  <div id="ArtistPage">
+  <div id="ArtistPage" v-if="templateif">
         <followVue></followVue>
-        <div id="ArtistBox" v-if="liveif">
+        <div id="ArtistBox">
             <div>
-                <img :src="SingerData.artist.cover" alt="">
+                <img v-if="imgif" :src="SingerData.artist.cover + '?param=640y300'" alt="">
             </div>
             <div id="RouterBox">
                 <router-link :to="{
@@ -32,6 +32,7 @@
                 }">艺人介绍</router-link>
             </div>
         </div>
+        <router-view name="path"></router-view>
   </div>
 </template>
 
@@ -46,7 +47,8 @@ export default {
     data() {
         return {
             SingerData: '',
-            liveif: false,
+            templateif: true,
+            imgif: false
         }
     },
     methods: {
@@ -55,6 +57,7 @@ export default {
         }
     },
     activated() {
+        this.templateif = true
         // 获取歌手信息
         Request({
             url: '/artist/detail', 
@@ -63,17 +66,15 @@ export default {
             }
         }).then(({data:{data:a}}) => {
             this.SingerData = a
-            this.liveif = true
+            this.imgif = true
         }).catch(arr =>{
             alert('请求数据失败，请刷新重试！')
         })
     },
     deactivated() {
-        this.liveif = false
+        this.imgif = false
+        this.templateif = false
     },
-    destroyed () {
-      console.log('ArtistPage销毁');
-    }
 }
 </script>
 
@@ -93,9 +94,13 @@ export default {
 
 }
 #RouterBox{
-    height: 50px;
+    border-right: 1px solid rgb(0, 0, 0, 0.3);
+    border-left: 1px solid rgb(0, 0, 0, 0.3);
+    border-top: 1px solid rgb(0, 0, 0, 0.3);
+    height: 51px;
     line-height: 50px;
     box-sizing: border-box;
+    font-size: 0;
     background-color: rgb(242, 242, 242);
 }
 a{
@@ -108,14 +113,22 @@ a{
     box-sizing: border-box;
     background-color: rgb(242, 242, 242);
 }
-a:nth-child(1){
+/* a:nth-child(1){
     border-left: 1px solid rgb(0, 0, 0, 0.3);
+} */
+a:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0px;
+    right: 0;
+    height: 0px;
+    width: 0px;
 }
 img{
     display: block;
     margin: 0 auto;
-    width: 100%;
-    height: 960px;
     text-align: center;
 }
 

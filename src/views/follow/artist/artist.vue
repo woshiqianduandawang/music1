@@ -46,12 +46,17 @@
             </div>
             <div id="singers">
                 <div>
-                    <router-link v-for="item in ClassSingers" :key="item.id"  :to="{
+                    <router-link v-for="(item, index) in ClassSingers" :key="item.id"  :to="{
                         path: '/artist-page',
                         query: {id: item.id}
-                    }">
-                        <img :src="item.picUrl+ '?param=130y130'" alt="">
-                        <span>{{item.name}}</span>
+                    }" :class="{'router-link':index >= 24}">
+                        <li v-if="index < 24">
+                            <img :src="item.picUrl+ '?param=130y130'" alt="">
+                            <span>{{item.name}}</span>
+                        </li>
+                        <p v-if="index >= 24">
+                            <i>{{item.name}}</i>
+                        </p>
                     </router-link>
                 </div>
             </div>
@@ -84,7 +89,7 @@ export default {
                 params: {
                 type: this.$route.query.type ?this.$route.query.type :-1, 
                 area: this.$route.query.area ?this.$route.query.area :-1,
-                limit: 24 
+                limit: 99 
                 }
             }).then(({data:{artists:ClassSinger}}) => {
                 this.ClassSingers = ClassSinger
@@ -117,18 +122,18 @@ export default {
     top: 40px;
 }
 #content{
-    position: relative;
-    top: 40px;
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
     padding: 20px;
-    padding-top: 0;
+    padding-top: 35px;
     box-sizing: border-box;
     width: 1280px;
     background-color: #fff;
 }
 #ClassBox{
     position: absolute;
+    top: 26px;
     left: -164px;
 }
 #ClassBox div{
@@ -154,10 +159,13 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-a{
+#singers a{
+    margin: 0 38px;
+}
+li{
     display: inline-block;
-    width: 200px;
-    height: 227px;
+    width: 130px;
+    height: 191px;
     text-align: center;
 }
 span{
@@ -167,6 +175,8 @@ span{
     text-align: center;
     text-decoration: none;
     font-size: 20px;
+    overflow: visible;
+    white-space: nowrap;
     color: #000;
 }
 span:hover{
@@ -181,5 +191,21 @@ img{
     border-radius: 3px;
     color: rgb(255, 0, 0);
     background-color: rgb(249, 249, 249);
+}
+#singers p{
+    width: 10px;
+    font-size: 16px;
+    text-align: center;
+    white-space: nowrap;
+}
+#singers i:hover{
+    text-decoration: underline;
+    color: rgb(255, 0, 0);
+}
+#singers .router-link{
+    margin: 0 38px;
+    margin-right: 157px;
+    margin-top: 12px;
+
 }
 </style>

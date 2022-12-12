@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <span>登录发现更多精彩</span>
-    <button @click="$store.commit('close', true)">立即登录</button>
+  <div id="my">
+    <div id="head"></div>
+    <div id="content">
+      <span>登录发现更多精彩</span>
+      <button @click="$store.commit('close', true)">立即登录</button>
+    </div>
   </div>
 </template>
 
@@ -18,8 +21,15 @@ export default {
 </script>
 
 <style scoped>
-  div{
-    position: absolute; 
+  #my{
+    position: relative; 
+  }
+  #head{
+    height: 20px;
+    background-color: rgb(255, 0, 0);
+  }
+  #content{
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
     top: 300px;

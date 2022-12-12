@@ -7,8 +7,6 @@ const Follow = () => import('@/views/follow/follow')
   const Ranking = () => import('@/views/follow/ranking/ranking')
   const Songsheet = () => import('@/views/follow/songsheet/songsheet')
   const Artist = () => import('@/views/follow/artist/artist')
-    const Hotsuggest = () => import('@/views/follow/artist/hotsuggest')
-    const Singers = () => import('@/views/follow/artist/singers')
 
 const ArtistPage = () => import('@/views/follow/artist/ArtistPage/ArtistPage')
   const HotSongs = () => import('@/views/follow/artist/ArtistPage/HotSongs')
@@ -65,12 +63,15 @@ Vue.use(Router)
           path: 'songsheet',
           component: Songsheet,
           meta: {
-            title: '歌单'
+            title: '发现-歌单'
           },
         },
         //发现页>歌手
         {
           path: 'artist',
+          meta: {
+            title: '发现-歌手'
+          },
           component: Artist,
         },
       ],
@@ -85,10 +86,12 @@ Vue.use(Router)
           redirect: 'hotsongs'
         },
         {
+          // 歌手歌曲
           path: 'hotsongs',
           component: HotSongs,
         },
         {
+          // 歌手介绍
           path: 'desc',
           component: Desc,
         },
