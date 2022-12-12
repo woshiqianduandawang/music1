@@ -94,9 +94,10 @@ export default {
 
 }
 #RouterBox{
-    border-right: 1px solid rgb(0, 0, 0, 0.3);
-    border-left: 1px solid rgb(0, 0, 0, 0.3);
-    border-top: 1px solid rgb(0, 0, 0, 0.3);
+    position:absolute;
+    top: 300px;
+    border: 1.5px solid rgba(67, 67, 67, 0.3);
+    width: 100%;
     height: 51px;
     line-height: 50px;
     box-sizing: border-box;
@@ -106,16 +107,14 @@ export default {
 a{
     display: inline-block;
     width: 200px;
-    height: 48px;
+    height: 47px;
     text-align: center;
     font-size: 20px;
     font-weight: 700;
     box-sizing: border-box;
     background-color: rgb(242, 242, 242);
 }
-/* a:nth-child(1){
-    border-left: 1px solid rgb(0, 0, 0, 0.3);
-} */
+
 a:after {
     content: '';
     position: absolute;
@@ -133,9 +132,13 @@ img{
 }
 
 .active{
-    border: 1px solid rgb(0, 0, 0, 0.3);
+    border: 1.5px solid rgba(67, 67, 67, 0.3);
     border-bottom: 0;
     border-top: 2px solid rgb(255, 0, 0);
-    height: 51px;
+    background-color: rgb(255, 255, 255);
+    height: 50px;
   }
+a:nth-child(1){
+    border-left: 0;
+}
 </style>

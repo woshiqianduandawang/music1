@@ -56,7 +56,7 @@ export default {
     #a1-b1{
         position: absolute;
         width: 1280px;
-        top: 387px;
+        top: 391px;
         left: 50%;
         transform: translateX(-50%);
         padding: 80px;

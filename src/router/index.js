@@ -47,7 +47,7 @@ Vue.use(Router)
           path: 'suggest',
           component: Suggest,
           meta: {
-            title: '发现'
+            title: 'music'
           },
         },
         // 发现页>排行榜

@@ -33,7 +33,7 @@ export default {
   },
   created() {
     // Request({
-    //   url: '/artist/desc',
+    //   url: '/playlist/track/all',
     //   params: {
     //     id: 11972054
     //   }

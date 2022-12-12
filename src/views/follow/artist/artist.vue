@@ -117,95 +117,94 @@ export default {
 </script>
 
 <style scoped>
-#ClassifyBox{
-    position: relative;
-    top: 40px;
-}
-#content{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 20px;
-    padding-top: 35px;
-    box-sizing: border-box;
-    width: 1280px;
-    background-color: #fff;
-}
-#ClassBox{
-    position: absolute;
-    top: 26px;
-    left: -164px;
-}
-#ClassBox div{
-    margin-top: 30px;
-    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
-}
-#ClassBox i{
-    display: block;
-    margin: 10px;
-    padding: 10px;
-    width: 100px;
-    font-size: 13px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-}
-#ClassBox i:hover{
-    text-decoration: underline;
-}
-/* 歌手 */
-#singers div{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-#singers a{
-    margin: 0 38px;
-}
-li{
-    display: inline-block;
-    width: 130px;
-    height: 191px;
-    text-align: center;
-}
-span{
-    display: inline-block;
-    margin: -5px;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 20px;
-    overflow: visible;
-    white-space: nowrap;
-    color: #000;
-}
-span:hover{
-    text-decoration: underline ;
-}
-img{
-    display: block;
-    margin: 0 auto;
-}
-.AcitveElement{
-    border: 1px solid rgba(65, 65, 65, 0.1);
-    border-radius: 3px;
-    color: rgb(255, 0, 0);
-    background-color: rgb(249, 249, 249);
-}
-#singers p{
-    width: 10px;
-    font-size: 16px;
-    text-align: center;
-    white-space: nowrap;
-}
-#singers i:hover{
-    text-decoration: underline;
-    color: rgb(255, 0, 0);
-}
-#singers .router-link{
-    margin: 0 38px;
-    margin-right: 157px;
-    margin-top: 12px;
-
-}
+    #ClassifyBox{
+        position: relative;
+        top: 40px;
+    }
+    #content{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 20px;
+        padding-top: 35px;
+        box-sizing: border-box;
+        width: 1280px;
+        background-color: #fff;
+    }
+    #ClassBox{
+        position: absolute;
+        top: 26px;
+        left: -164px;
+    }
+    #ClassBox div{
+        margin-top: 30px;
+        border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+    }
+    #ClassBox i{
+        display: block;
+        margin: 10px;
+        padding: 10px;
+        width: 100px;
+        font-size: 13px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    #ClassBox i:hover{
+        text-decoration: underline;
+    }
+    /* 歌手 */
+    #singers div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    }
+    #singers a{
+        margin: 0 38px;
+    }
+    li{
+        display: inline-block;
+        width: 130px;
+        height: 191px;
+        text-align: center;
+    }
+    span{
+        display: inline-block;
+        margin: -5px;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 20px;
+        overflow: visible;
+        white-space: nowrap;
+        color: #000;
+    }
+    span:hover{
+        text-decoration: underline ;
+    }
+    img{
+        display: block;
+        margin: 0 auto;
+    }
+    .AcitveElement{
+        border: 1px solid rgba(65, 65, 65, 0.1);
+        border-radius: 3px;
+        color: rgb(255, 0, 0);
+        background-color: rgb(249, 249, 249);
+    }
+    #singers p{
+        width: 10px;
+        font-size: 16px;
+        text-align: center;
+        white-space: nowrap;
+    }
+    #singers i:hover{
+        text-decoration: underline;
+        color: rgb(255, 0, 0);
+    }
+    #singers .router-link{
+        margin: 0 38px;
+        margin-right: 157px;
+        margin-top: 12px;
+    }
 </style>

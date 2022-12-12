@@ -43,7 +43,7 @@
             }
           }">电子<span>I</span></router-link>
 
-          <router-link to="/follow/songsheet">更多</router-link>
+          <router-link tag="i" to="/follow/songsheet">更多</router-link>
         </div>
         <!-- 推荐歌单 -->
         <div id="a1-b1-c2">
@@ -64,6 +64,7 @@
         <!-- 新碟部分 -->
         <div id="a1-b1-c3">
           <h3>新碟上架</h3>
+          <i>更多</i>
         </div>
         <div id="a1-b1-c4">
           <!-- 左右滑动按钮 -->
@@ -83,23 +84,28 @@
             </ol>
           </div>
         </div>
+        <!-- 榜单 -->
+        <Ranking></Ranking>
      </div>
     </div>
   </div>
 </template>
 <script>
-import Banner from './banner/banner.vue'
+import Banner from './banner.vue'
+import Ranking from './ranking.vue'
 import Request from '@/network/request'
 import Animation from '@/assets/js/animation-x-copy.js'
 export default {
     name: 'Suggest',
     components: {
-      Banner
+      Banner,
+      Ranking
     },
     data() {
       return {
         tags: '', //歌单数据
         monthData: '', //新碟数据
+        list: '', //榜单数据
         flag: true //节流阀
       }
     },
@@ -139,13 +145,15 @@ export default {
           }
         })
       },
+      // 新碟点击事件
       jump(id) {
         Request({
-          url: '/login/status',
-          // params: {
-          //   id: id
-          // }
+          url: '/album/detail/dynamic',
+          params: {
+            id: id
+          }
         }).then( a => {
+          this.list = a
           console.log(a);
         }).catch( arr =>{
           alert('请求数据失败，请刷新重试！')
@@ -208,22 +216,28 @@ export default {
   }
   #a1-b1-c1,
   #a1-b1-c3{
-    border-bottom: 2.3px solid #000;
+    border-bottom: 2.3px solid rgb(211, 1, 1);
     padding-bottom: 10px;
     width: 100%;
   }
   h3{
     display: inline-block;
   }
-  #a1-b1-c1 a{
+  i,
+  a{
     display: inline-block;
     padding: 6px;
     text-align: center;
     font-size: 14px;
     line-height: 14px;
+    cursor: pointer;
   }
-  #a1-b1-c1 a:hover{
+  i:hover,
+  a:hover{
     text-decoration: underline;
+  }
+  i{
+    float: right;
   }
   #a1-b1-c1 a span{
     position: relative;
