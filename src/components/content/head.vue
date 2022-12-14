@@ -73,7 +73,7 @@ export default {
   }
   a{
     display: inline-block;
-    color: #fff;
+    color: rgb(204, 204, 204);
     width: 200px;
     height: 100%;
     text-align: center;
@@ -84,6 +84,7 @@ export default {
   }
   a:hover {
     background-color:rgb(29, 29, 29);
+    color: #fff;
   }
   p{
     position: absolute;
@@ -91,7 +92,7 @@ export default {
     transform: translateY(-50%);
     right: 66px;
     cursor: pointer;
-    color: #fff;
+    color: rgb(204, 204, 204);
     font-size: 16px;
   }
   sub{
@@ -102,7 +103,7 @@ export default {
     transform: translateX(-50%) rotateZ(45deg) ;
     width: 20px;
     height: 20px;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(194, 12, 12);
   }
   .active{
     background-color: rgb(29, 29, 29);

@@ -49,7 +49,7 @@ export default {
     position: relative;
     width: 100%;
     height: 40px;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(194, 12, 12);
   }
   #FollowBigBox{
     position: absolute;

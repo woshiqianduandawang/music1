@@ -2,11 +2,13 @@
   <!-- 榜单 -->
   <div id="ranking">
     <div id="content">
+        <!-- 榜单分类 -->
       <div id="a1" ref="a1">
-        <ol :class="{'active': active == index}" v-for="(item, index) in RankingData" :key="item.id" @click="GetData(item.id, index)" >
+        <ol :class="{'active': item.id == $route.query.id || active == item.id}" v-for="(item) in RankingData" :key="item.id" @click="router(item.id)" >
           {{item.name}}
         </ol>
       </div>
+      <!-- 榜单数据 -->
       <table>
         <tr>
           <th></th>
@@ -14,20 +16,25 @@
           <th><i>时长</i></th>
           <th><i>歌手</i></th>
         </tr>
-        <tr v-for="(item, index) in songs" :key="index" id="tr">
+        <tr v-for="(item, index) in list.tracks" :key="index" id="tr">
+          <!-- 序号 -->
           <td>
             {{index + 1}}
           </td>
+          <!-- 歌曲名 -->
           <td>
-            <p title="播放"  @click="$store.commit('PlayMusic',{songs: songs, index: index})">{{item.name}}</p>
+            <p title="播放"  @click="$store.commit('PlayMusic',{songs: list.tracks, index: index})">{{item.name}}</p>
           </td>
+
           <td>
+            <!-- 歌曲时长 -->
             <i>
               {{GetTime(item.dt / 1000 / 60)}}:
               {{GetTime(item.dt / 1000 % 60)}}
             </i>
           </td>
           <td>
+              <!-- 拼接歌手名(如果有多个创作者) -->
               <div v-for="(item2, inx) in item.ar" :key="inx">
                 <span @click="jump(item2.id)" :title=GetArName(item.ar) >
                   {{item2.name}}
@@ -48,38 +55,60 @@ export default {
     name: 'Ranking',
     data() {
       return {
-        RankingData: '',
-        songs: '',
-        active: 0,
+        RankingData: '', //榜单类型数据
+        list: '', //榜单数据
+        active: 19723756, //创建组件默认设置第一个分类的样式
+        unwatch: '', //保存取消watch的回调函数
       }
     },
-    mounted() {
-      //榜单名
+    activated() {
+      //获取榜单分类
       Request({
         url: '/toplist',
       }).then( ({data:{list:a}}) => {
         this.RankingData = a
-        this.GetData(this.RankingData[0].id, 0)
       }).catch( arr =>{
         alert('请求数据失败，请刷新重试！')
       })
+      // 请求默认加载的飙升榜
+      this.Getdata()
+      // watch监听list的变化，watch返回一个取消监听的函数，赋值接收
+      this.unwatch = this.$watch('$route.query', function() {
+        this.Getdata()
+      })
     },
     methods: {
-      GetData(id, index) {
-          this.active = index
-          // 榜单数据
+      // 获取榜单数据
+      Getdata() {
+        // 判断是否是第一次创建组件
+        this.$route.query.id ?this.active = null :''
+        // 跳到页面最上端
+        window.scroll(0,0)
+        // 请求榜单数据
         Request({
           url: '/playlist/detail',
           params: {
-            id: id
+            id: this.$route.query.id ?this.$route.query.id :19723756 
           }
         }).then( ({data:{playlist:a}}) => {
-          this.songs = a.tracks
+          this.list = a
+          // 设置title
+          document.title = '榜单-' + this.list.name
         }).catch( arr =>{
           alert('请求数据失败，请刷新重试！')
         })
       },
+      router(id) {
+        // 榜单分类按钮跳转
+        this.$router.push({
+          path: '/follow/ranking',
+          query: {
+            id: id
+          }
+        })
+      },
       jump(id) {
+        // 跳转至歌手主页
         this.$router.push({
           path:'/artist-page',
           query:{
@@ -90,14 +119,14 @@ export default {
     },
     computed: {
       GetTime() {
-        // 歌曲时长
+        // 歌曲时长，自动补0
         return function(time) {
           let a = parseInt(time) <= 10  ?'0' + parseInt(time) :parseInt(time)
           return a
         }
       },
       GetArName() {
-        // 作者名字
+        // 作者名字拼接
         return function(ar) {
           let name = null
           ar.forEach((item) => {
@@ -110,7 +139,11 @@ export default {
           return name
         }
       },
-    }
+    },
+    deactivated() {
+      // 离开组件停止watch监听
+      this.unwatch()
+    },
 }
 </script>
 
@@ -154,7 +187,7 @@ export default {
     cursor: pointer;
   }
   ol:hover{
-    background-color: rgb(217, 217, 217);
+    text-decoration: underline;
   }
   /* 歌曲 */
   table{

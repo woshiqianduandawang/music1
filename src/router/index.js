@@ -54,9 +54,7 @@ Vue.use(Router)
         {
           path: 'ranking',
           component: Ranking,
-          meta: {
-            title: '排行榜'
-          },
+          
         },
         // 发现页>歌单
         {
@@ -69,9 +67,6 @@ Vue.use(Router)
         //发现页>歌手
         {
           path: 'artist',
-          meta: {
-            title: '发现-歌手'
-          },
           component: Artist,
         },
       ],
@@ -138,7 +133,9 @@ Vue.use(Router)
     mode: 'history'
   })
   router.beforeEach((to, from, next) => {
-    document.title = to.meta.title
+    if(to.meta.title) {
+      document.title = to.meta.title
+    }
     next()
   })
 export default router

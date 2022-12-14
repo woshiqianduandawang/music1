@@ -66,6 +66,8 @@ export default {
             }
         }).then(({data:{data:a}}) => {
             this.SingerData = a
+            document.title = a.artist.name + ' ' + a.identify.imageDesc
+            console.log(a);
             this.imgif = true
         }).catch(arr =>{
             alert('请求数据失败，请刷新重试！')

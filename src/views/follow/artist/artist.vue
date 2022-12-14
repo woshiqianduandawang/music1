@@ -4,44 +4,44 @@
             <div id="ClassBox">
                 歌手分类：
                 <div>
-                    <i @click="jump({type: -1, area: -1}, 0)" :class="{'AcitveElement': active == 0}">
+                    <i @click="jump({type: -1, area: -1}, 0, '发现-歌手')" :class="{'AcitveElement': active == 0}">
                         推荐歌手
                     </i>
                 </div>
 
                 <!-- 华语 -->
                 <div>
-                    <i @click="jump({type: 1, area: 7}, 1)" :class="{'AcitveElement': active == 1}">华语男歌手</i>
-                    <i @click="jump({type: 2, area: 7}, 2)" :class="{'AcitveElement': active == 2}">华语女歌手</i>
-                    <i @click="jump({type: 3, area: 7}, 3)" :class="{'AcitveElement': active == 3}">华语乐队/组合</i>
+                    <i @click="jump({type: 1, area: 7}, 1, '华语男歌手')" :class="{'AcitveElement': active == 1}">华语男歌手</i>
+                    <i @click="jump({type: 2, area: 7}, 2, '华语女歌手')" :class="{'AcitveElement': active == 2}">华语女歌手</i>
+                    <i @click="jump({type: 3, area: 7}, 3, '华语乐队/组合')" :class="{'AcitveElement': active == 3}">华语乐队/组合</i>
                 </div>
                 
                 <!-- 欧美 -->
                 <div>
-                    <i @click="jump({type: 1, area: 96}, 4)" :class="{'AcitveElement': active == 4}">欧美男歌手</i>
-                    <i @click="jump({type: 2, area: 96}, 5)" :class="{'AcitveElement': active == 5}">欧美女歌手</i>
-                    <i @click="jump({type: 3, area: 96}, 6)" :class="{'AcitveElement': active == 6}">欧美乐队/组合</i>
+                    <i @click="jump({type: 1, area: 96}, 4, '欧美男歌手')" :class="{'AcitveElement': active == 4}">欧美男歌手</i>
+                    <i @click="jump({type: 2, area: 96}, 5, '欧美女歌手')" :class="{'AcitveElement': active == 5}">欧美女歌手</i>
+                    <i @click="jump({type: 3, area: 96}, 6, '欧美乐队/组合')" :class="{'AcitveElement': active == 6}">欧美乐队/组合</i>
                 </div>
 
                 <!-- 日本 -->
                 <div>
-                    <i @click="jump({type: 1, area: 8}, 7)" :class="{'AcitveElement': active == 7}">日本男歌手</i>
-                    <i @click="jump({type: 2, area: 8}, 8)" :class="{'AcitveElement': active == 8}">日本女歌手</i>
-                    <i @click="jump({type: 3, area: 8}, 9)" :class="{'AcitveElement': active == 9}">日本乐队/组合</i>
+                    <i @click="jump({type: 1, area: 8}, 7, '日本男歌手')" :class="{'AcitveElement': active == 7}">日本男歌手</i>
+                    <i @click="jump({type: 2, area: 8}, 8, '日本女歌手')" :class="{'AcitveElement': active == 8}">日本女歌手</i>
+                    <i @click="jump({type: 3, area: 8}, 9, '日本乐队/组合')" :class="{'AcitveElement': active == 9}">日本乐队/组合</i>
                 </div>
 
                 <!-- 韩国 -->
                 <div>
-                    <i @click="jump({type: 1, area: 16}, 10)" :class="{'AcitveElement': active == 10}">韩国男歌手</i>
-                    <i @click="jump({type: 2, area: 16}, 11)" :class="{'AcitveElement': active == 11}">韩国女歌手</i>
-                    <i @click="jump({type: 3, area: 16}, 12)" :class="{'AcitveElement': active == 12}">韩国乐队/组合</i>
+                    <i @click="jump({type: 1, area: 16}, 10, '韩国男歌手')" :class="{'AcitveElement': active == 10}">韩国男歌手</i>
+                    <i @click="jump({type: 2, area: 16}, 11, '韩国女歌手')" :class="{'AcitveElement': active == 11}">韩国女歌手</i>
+                    <i @click="jump({type: 3, area: 16}, 12, '韩国乐队/组合')" :class="{'AcitveElement': active == 12}">韩国乐队/组合</i>
                 </div>
 
                 <!-- 其他 -->
                 <div>
-                    <i @click="jump({type: 1, area: 0}, 13)" :class="{'AcitveElement': active == 13}">其他男歌手</i>
-                    <i @click="jump({type: 2, area: 0}, 14)" :class="{'AcitveElement': active == 14}">其他女歌手</i>
-                    <i @click="jump({type: 3, area: 0}, 15)" :class="{'AcitveElement': active == 15}">其他乐队/组合</i>
+                    <i @click="jump({type: 1, area: 0}, 13, '其他男歌手')" :class="{'AcitveElement': active == 13}">其他男歌手</i>
+                    <i @click="jump({type: 2, area: 0}, 14, '其他女歌手')" :class="{'AcitveElement': active == 14}">其他女歌手</i>
+                    <i @click="jump({type: 3, area: 0}, 15, '其他乐队/组合')" :class="{'AcitveElement': active == 15}">其他乐队/组合</i>
                 </div>
             </div>
             <div id="singers">
@@ -52,10 +52,10 @@
                     }" :class="{'router-link':index >= 24}">
                         <li v-if="index < 24">
                             <img :src="item.picUrl+ '?param=130y130'" alt="">
-                            <span>{{item.name}}</span>
+                            <span :title="item.name">{{SaveName(item.name)}}</span>
                         </li>
                         <p v-if="index >= 24">
-                            <i>{{item.name}}</i>
+                            <i :title="item.name">{{SaveName(item.name)}}</i>
                         </p>
                     </router-link>
                 </div>
@@ -73,17 +73,27 @@ export default {
         return {
             ClassSingers: '',
             singerfund: 10,
-            GetClassSingers: '',
             active: 0,
             type: -1,
-            area: -1
+            area: -1,
+            title: '发现-歌手',
+            unwatch: '',
         }
     },
     components: {
     },
-    created () {
+    activated () {
+        document.title = this.title
         // 获取歌手数据
-        this.GetClassSingers = () => {
+        this.GetClassSingers()
+        this.unwatch = this.$watch('$route.query', function() {
+            this.GetClassSingers()
+            document.title = this.title
+        })
+    },
+    methods: {
+        // 获取歌手数据
+        GetClassSingers() {
             Request({
                 url: '/artist/list', 
                 params: {
@@ -96,11 +106,10 @@ export default {
             }).catch(arr =>{
                 alert('请求数据失败，请刷新重试！')
             })
-        }
-        this.GetClassSingers()
-    },
-    methods: {
-        jump(query, index) {
+        },
+        //携带数据跳转到当前页面
+        jump(query, index, title) {
+            this.title = title
             this.active = index
             this.$router.push({
                 path: "/follow/artist",
@@ -108,11 +117,20 @@ export default {
             })
         }
     },
-    watch: {
-        '$route.query': function(newval, oldval) {
-            this.GetClassSingers()
+    computed: {
+        SaveName() {
+            return function(name) {
+                if(name.length > 14) {
+                    return name.substr(0,14) + '…'
+                }else {
+                    return name
+                }
+            }
         }
     },
+    deactivated() {
+        this.unwatch()
+    }
 }
 </script>
 
@@ -166,16 +184,14 @@ export default {
         display: inline-block;
         width: 130px;
         height: 191px;
-        text-align: center;
     }
     span{
-        display: inline-block;
-        margin: -5px;
-        padding: 10px;
-        text-align: center;
+        display:block;
+        margin-top: 5px;
+        width: 170px;
         text-decoration: none;
         font-size: 20px;
-        overflow: visible;
+        overflow: hidden;
         white-space: nowrap;
         color: #000;
     }
@@ -195,8 +211,12 @@ export default {
     #singers p{
         width: 10px;
         font-size: 16px;
-        text-align: center;
         white-space: nowrap;
+    }
+    #singers i{
+        display: block;
+        width: 158px;
+        overflow: hidden;
     }
     #singers i:hover{
         text-decoration: underline;
