@@ -183,6 +183,9 @@ export default {
         font-size: 14px;
         line-height: 14px;
     }
+    #category li div a:hover{
+      text-decoration: underline;
+    }
     /* 分割的竖线 */
     #category li div span{
         position: relative;

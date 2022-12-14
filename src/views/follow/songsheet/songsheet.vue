@@ -98,10 +98,12 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     padding: 20px;
-    border: 1px solid rgb(143, 143, 143);
+    padding-bottom: 50px;
+    border: 2px solid rgba(79, 79, 79, 0.1);
     border-top: 0;
     box-sizing: border-box;
     width: 1280px;
+    background-color: #fff;
   }
   #SongSheetCenter-a{
     display: flex;

@@ -22,12 +22,10 @@
 
 <script>
 import Request from '@/network/request'
-import suggestVue from './suggest/suggest.vue';
 
 export default {
   name: 'Follow',
   components: {
-    suggestVue
   },
   methods: {
   },

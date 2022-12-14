@@ -9,28 +9,27 @@
 
 <script>
 export default {
-    name: 'Shopping',
-    methods: {
-    },
-}
+  name: "Shopping",
+  methods: {},
+};
 </script>
 
 <style scoped>
-  #shopping{
-    position: relative; 
-  }
-  #head{
-    height: 20px;
-    background-color: rgb(255, 0, 0);
-  }
-  #content{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 300px;
-  }
-  span{
-    left: 40%;
-    font-size: 50px;
-  }
+#shopping {
+  position: relative;
+}
+#head {
+  height: 20px;
+  background-color: rgb(255, 0, 0);
+}
+#content {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 300px;
+}
+span {
+  left: 40%;
+  font-size: 50px;
+}
 </style>

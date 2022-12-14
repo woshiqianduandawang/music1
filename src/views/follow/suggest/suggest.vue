@@ -206,10 +206,12 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     width: 1280px;
+    background-color: #fff;
   }
   #a1-b1{
-    border-left: 1px solid #000;
-    border-right: 1px solid #000;
+    /* border-left: 1px solid #000;
+    border-right: 1px solid #000; */
+    border: 2px solid rgba(79, 79, 79, 0.1);
     padding: 20px;
     box-sizing: border-box;
     width: 1080px;
