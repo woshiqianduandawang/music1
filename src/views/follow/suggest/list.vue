@@ -28,7 +28,7 @@
               {{ OmitName(item.name) }}
             </p>
           </li>
-          <li>
+          <li id="BottomLi">
             <router-link
               :to="{
                 path: '/follow/ranking',
@@ -64,7 +64,7 @@
               {{ OmitName(item.name) }}
             </p>
           </li>
-          <li>
+          <li id="BottomLi">
             <router-link
               :to="{
                 path: '/follow/ranking',
@@ -97,7 +97,7 @@
               {{ OmitName(item.name) }}
             </p>
           </li>
-          <li>
+          <li id="BottomLi">
             <router-link
               :to="{
                 path: '/follow/ranking',
@@ -116,6 +116,7 @@
 
 <script>
 import Request from "@/network/request";
+import mixincomputed from '@/common/mixin-computed'
 
 export default {
   name: "List",
@@ -124,8 +125,9 @@ export default {
       soar: "",
       NewSong: "",
       original: "",
-    };
+    }
   },
+  mixins: [mixincomputed],
   created() {
     //榜单数据
     //飙升榜
@@ -170,17 +172,6 @@ export default {
         alert("请求数据失败，请刷新重试！");
       });
   },
-  computed: {
-    OmitName() {
-      return function (name) {
-        if (name.length > 30) {
-          return name.substr(0, 30) + "…";
-        } else {
-          return name;
-        }
-      };
-    },
-  },
 };
 </script>
 
@@ -218,15 +209,16 @@ a:hover {
 ol {
   display: inline-block;
   margin-top: 35px;
-  border: 2px solid rgba(146, 146, 146, 0.2);
+  border: 2px solid rgba(146, 146, 146, 0.5);
   border-right: 0;
   box-sizing: border-box;
   overflow: hidden;
   white-space: nowrap;
   width: 336px;
+  background-color: rgb(241, 241, 241);
 }
 ol:nth-child(3) {
-  border-right: 2px solid rgba(146, 146, 146, 0.2);
+  border-right: 2px solid rgba(146, 146, 146, 0.5);
 }
 ol div {
   position: relative;
@@ -242,8 +234,9 @@ ol h4 {
 li {
   padding: 5px;
 }
-li:nth-child(2n) {
-  background-color: rgb(231, 231, 231);
+li:nth-child(2n),
+#BottomLi {
+  background-color: rgb(224, 223, 223);
 }
 ol span {
   display: inline-block;

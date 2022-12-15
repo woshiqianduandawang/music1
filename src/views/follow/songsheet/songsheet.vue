@@ -124,6 +124,7 @@ export default {
     border-radius: 10px;
     width: 130px;
     height:130px;
+    box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.1);
   }
   /* 标题 */
   #ContentBox span{

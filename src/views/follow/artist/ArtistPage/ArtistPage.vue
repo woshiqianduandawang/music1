@@ -71,9 +71,6 @@ export default {
     };
   },
   methods: {
-    click(a) {
-      console.log(a);
-    },
   },
   activated() {
     // 获取歌手信息

@@ -23,18 +23,17 @@
           </td>
           <!-- 歌曲名 -->
           <td>
-            <p title="播放"  @click="$store.commit('PlayMusic',{songs: list.tracks, index: index})">{{item.name}}</p>
+            <p :title=item.name  @click="$store.commit('PlayMusic',{songs: list.tracks, index: index})">{{OmitName(item.name, 16)}}</p>
           </td>
-
+          <!-- 歌曲时长 -->
           <td>
-            <!-- 歌曲时长 -->
             <i>
               {{GetTime(item.dt / 1000 / 60)}}:
               {{GetTime(item.dt / 1000 % 60)}}
             </i>
           </td>
+          <!-- 拼接歌手名(如果有多个创作者) -->
           <td>
-              <!-- 拼接歌手名(如果有多个创作者) -->
               <div v-for="(item2, inx) in item.ar" :key="inx">
                 <span @click="jump(item2.id)" :title=GetArName(item.ar) >
                   {{item2.name}}
@@ -49,10 +48,12 @@
 </template>
 
 <script>
+import mixincomputed from '@/common/mixin-computed'
 import Request from '@/network/request'
 
 export default {
     name: 'Ranking',
+    mixins: [mixincomputed],
     data() {
       return {
         RankingData: '', //榜单类型数据
@@ -116,29 +117,6 @@ export default {
           }
         })
       }
-    },
-    computed: {
-      GetTime() {
-        // 歌曲时长，自动补0
-        return function(time) {
-          let a = parseInt(time) <= 10  ?'0' + parseInt(time) :parseInt(time)
-          return a
-        }
-      },
-      GetArName() {
-        // 作者名字拼接
-        return function(ar) {
-          let name = null
-          ar.forEach((item) => {
-            if(name) {
-              name = name + '/' + item.name
-            }else {
-              name = item.name
-            }
-          });
-          return name
-        }
-      },
     },
     deactivated() {
       // 离开组件停止watch监听

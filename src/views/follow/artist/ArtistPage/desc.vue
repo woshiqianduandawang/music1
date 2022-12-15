@@ -65,7 +65,6 @@ export default {
 }
 p {
   line-height: 30px;
-  /* letter-spacing: 2px; */
   font-size: 16px;
 }
 </style>

@@ -15,6 +15,7 @@ const My = () => import('@/views/my/my')
 const Shopping = () => import('@/views/shopping/shopping')
 const SearchContent = () => import('@/components/content/search/SearchContent')
 const Playlist = () => import('@/views/follow/songsheet/playlist')
+const Song = () => import('@/components/content/song') 
 
 Vue.use(Router)
 
@@ -128,6 +129,10 @@ const routes = [
     path: '/playlist',
     component: Playlist,
   },
+  {
+    path: '/song',
+    component: Song
+  }
 ]
 const router = new Router({
   routes,

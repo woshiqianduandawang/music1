@@ -1,7 +1,7 @@
 <template>
   <!-- 播放器图标 -->
   <div id="player" @mouseover="focus" @mouseleave="mouseleave">
-    <p>
+    <p @click="jump($store.state.song.id)">
       {{ $store.state.songs[$store.state.index].name
       }}{{ $store.state.songs[$store.state.index].alia[0] }} —
       {{ $store.state.songs[$store.state.index].ar[0].name }}
@@ -43,7 +43,7 @@
         </p>
       </li>
     </ol>
-    <audio v-show="false" :src="$store.state.songurl" controls autoplay></audio>
+    <audio v-show="false" :src="$store.state.song.url" controls autoplay></audio>
   </div>
 </template>
 
@@ -92,6 +92,15 @@ export default {
         index: this.$store.state.index + 1,
       });
     },
+    // 跳转到播放器主页
+    jump(id) {
+      this.$router.push({
+        path: '/song',
+        query: {
+          id: id
+        }
+      })
+    },
     focus() {
       // 获得焦点显示播放器
       // console.log('获得');
@@ -135,6 +144,7 @@ export default {
 }
 p {
   margin: 5px;
+  cursor: pointer;
 }
 #imgbox {
   position: absolute;

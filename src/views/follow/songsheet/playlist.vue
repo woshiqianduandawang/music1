@@ -53,11 +53,11 @@
             <!-- 歌曲名 -->
             <td>
               <span
-                title="播放"
+                :title="item.name"
                 @click="
                   $store.commit('PlayMusic', { songs: songs, index: index })
                 "
-                >{{ OmitName(item.name, 14) }}</span
+                >{{ OmitName(item.name, 16) }}</span
               >
             </td>
 
@@ -91,6 +91,7 @@
 </template>
 
 <script>
+import mixincomputed from '@/common/mixin-computed'
 import Follow from "@/views/follow/follow";
 import Request from "@/network/request";
 
@@ -99,6 +100,7 @@ export default {
   components: {
     Follow,
   },
+  mixins: [mixincomputed],
   data() {
     return {
       songs: "", //保存歌曲列表
@@ -158,7 +160,7 @@ export default {
       });
     },
     FnOpen() {
-      if (this.OpenEl.clientHeight < this.OpenEl.scrollHeight) {
+      if (this.OpenEl.offsetHeight < this.OpenEl.scrollHeight) {
         this.$refs.open.innerHTML = "收起";
         this.OpenEl.style.height = "100%";
       } else {
@@ -167,63 +169,9 @@ export default {
       }
     },
   },
-  computed: {
-    // 时间戳的转换
-    GetYear() {
-      // 年
-      return this.date.getFullYear() + "-";
-    },
-    GetMonths() {
-      // 月
-      return (
-        (this.date.getMonth() + 1 < 10
-          ? "0" + (this.date.getMonth() + 1)
-          : this.date.getMonth() + 1) + "-"
-      );
-    },
-    GetDay() {
-      // 日
-      return (
-        (this.date.getDate() < 10
-          ? "0" + this.date.getDate()
-          : this.date.getDate()) + " "
-      );
-    },
-    // 省略过长的字符串
-    OmitName() {
-      return function (name, length) {
-        if (name.length > length) {
-          return name.substr(0, length) + "…";
-        } else {
-          return name;
-        }
-      };
-    },
-    GetTime() {
-      // 歌曲时长，自动补0
-      return function (time) {
-        let a = parseInt(time) <= 10 ? "0" + parseInt(time) : parseInt(time);
-        return a;
-      };
-    },
-    GetArName() {
-      // 作者名字拼接
-      return function (ar) {
-        let name = null;
-        ar.forEach((item) => {
-          if (name) {
-            name = name + "/" + item.name;
-          } else {
-            name = item.name;
-          }
-        });
-        return name;
-      };
-    },
-  },
   updated() {
     this.OpenEl = document.querySelector("#intro");
-    if (this.OpenEl.clientHeight < this.OpenEl.scrollHeight) {
+    if (this.OpenEl.offsetHeight < this.OpenEl.scrollHeight) {
       this.open = true;
     }
   },

@@ -9,9 +9,9 @@
         <!-- 歌曲名 -->
         <td>
           <span
-            title="播放"
+            :title="item.name"
             @click="$store.commit('PlayMusic', { songs: songs, index: index })"
-            >{{ OmitName(item.name, 14) }}</span
+            >{{ OmitName(item.name, 16) }}</span
           >
         </td>
 
@@ -24,7 +24,7 @@
         </td>
         <!-- 所属专辑 -->
         <td>
-          <span :title="item.al.name">{{ OmitName(item.al.name, 11) }}</span>
+          <span :title="item.al.name">{{ OmitName(item.al.name, 16) }}</span>
         </td>
       </tr>
     </table>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import mixincomputed from '@/common/mixin-computed'
 import Request from "@/network/request";
 
 export default {
@@ -42,6 +43,8 @@ export default {
       show: false,
     };
   },
+  // 混入mixin-computed里的名字过长省略的方法
+  mixins: [mixincomputed],
   methods: {
     // 获取歌手歌曲
     GetSongs() {
@@ -58,25 +61,6 @@ export default {
         .catch((arr) => {
           alert("请求数据失败，请刷新重试！");
         });
-    },
-  },
-  computed: {
-    // 省略过长的字符串
-    OmitName() {
-      return function (name, length) {
-        if (name.length > length) {
-          return name.substr(0, length) + "…";
-        } else {
-          return name;
-        }
-      };
-    },
-    GetTime() {
-      // 歌曲时长，自动补0
-      return function (time) {
-        let a = parseInt(time) <= 10 ? "0" + parseInt(time) : parseInt(time);
-        return a;
-      };
     },
   },
   created() {

@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     songs: '', //歌曲播放列表
     // show: false, //什么用？
-    songurl: '',  //歌曲url
+    song: '',  //歌曲信息
     index: '', //index决定播放哪首歌
     stoporplay: false, //播放器播放状态
     playerif: false, //是否创建播放器
@@ -49,17 +49,7 @@ export default new Vuex.Store({
               id: state.songs[state.index].id,
               level: 'lossless'
             }
-          }).then(({ data: { data: song } }) => state.songurl = song[0].url)
-            .catch(arr => {
-              alert('请求数据失败，请刷新重试！')
-            })
-          // 获取歌词
-          Request({
-            url: '/lyric',
-            params: {
-              id: state.songs[state.index].id,
-            }
-          }).then(({ data: { lrc: a } }) => state.lyric = a)
+          }).then(({ data: { data: song } }) => state.song = song[0])
             .catch(arr => {
               alert('请求数据失败，请刷新重试！')
             })

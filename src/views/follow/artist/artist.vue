@@ -2,8 +2,8 @@
   <div id="ClassifyBox">
     <div id="content">
       <div id="ClassBox">
-        歌手分类：
         <div>
+          <h3>推荐</h3>
           <i
             @click="jump({ type: -1, area: -1 }, 0, '发现-歌手')"
             :class="{ AcitveElement: active == 0 }"
@@ -14,6 +14,7 @@
 
         <!-- 华语 -->
         <div>
+          <h3>华语</h3>
           <i
             @click="jump({ type: 1, area: 7 }, 1, '华语男歌手')"
             :class="{ AcitveElement: active == 1 }"
@@ -33,6 +34,7 @@
 
         <!-- 欧美 -->
         <div>
+          <h3>欧美</h3>
           <i
             @click="jump({ type: 1, area: 96 }, 4, '欧美男歌手')"
             :class="{ AcitveElement: active == 4 }"
@@ -52,6 +54,7 @@
 
         <!-- 日本 -->
         <div>
+          <h3>日本</h3>
           <i
             @click="jump({ type: 1, area: 8 }, 7, '日本男歌手')"
             :class="{ AcitveElement: active == 7 }"
@@ -71,6 +74,7 @@
 
         <!-- 韩国 -->
         <div>
+          <h3>韩国</h3>
           <i
             @click="jump({ type: 1, area: 16 }, 10, '韩国男歌手')"
             :class="{ AcitveElement: active == 10 }"
@@ -90,6 +94,7 @@
 
         <!-- 其他 -->
         <div>
+          <h3>其他</h3>
           <i
             @click="jump({ type: 1, area: 0 }, 13, '其他男歌手')"
             :class="{ AcitveElement: active == 13 }"
@@ -214,27 +219,40 @@ export default {
   transform: translateX(-50%);
   padding: 20px;
   padding-top: 35px;
+  border: 2px solid rgba(79, 79, 79, 0.1);
+  border-top: 0;
   box-sizing: border-box;
   width: 1280px;
   background-color: #fff;
 }
 #ClassBox {
   position: absolute;
-  top: 26px;
-  left: -164px;
+  top: 0px;
+  left: -173px;
+  border-left: 1px solid rgb(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+  padding: 30px;
+  box-sizing: border-box;
+  height: 100%;
 }
 #ClassBox div {
-  margin-top: 30px;
+  margin-top: 20px;
   border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+}
+#ClassBox div:nth-last-child(1){
+  border: 0;
+}
+#ClassBox h3{
+  position: relative;
+  top: -6px;
+  left: -8px;
 }
 #ClassBox i {
   display: block;
-  margin: 10px;
-  padding: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
   width: 100px;
   font-size: 13px;
-  text-align: center;
-  text-decoration: none;
   cursor: pointer;
 }
 #ClassBox i:hover {
@@ -270,6 +288,7 @@ span:hover {
 img {
   display: block;
   margin: 0 auto;
+  box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.1);
 }
 .AcitveElement {
   border: 1px solid rgba(65, 65, 65, 0.1);

@@ -85,21 +85,21 @@
           </div>
         </div>
         <!-- 榜单 -->
-        <Ranking></Ranking>
+        <List></List>
      </div>
     </div>
   </div>
 </template>
 <script>
 import Banner from './banner.vue'
-import Ranking from './list.vue'
+import List from './list.vue'
 import Request from '@/network/request'
 import Animation from '@/assets/js/animation-x-copy.js'
 export default {
     name: 'Suggest',
     components: {
       Banner,
-      Ranking
+      List
     },
     data() {
       return {
