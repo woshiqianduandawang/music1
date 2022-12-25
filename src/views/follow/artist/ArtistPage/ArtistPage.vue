@@ -56,7 +56,6 @@
 </template>
 
 <script>
-import Request from "@/network/request";
 import followVue from "@/views/follow/follow.vue";
 export default {
   name: "ArtistPage",
@@ -74,7 +73,7 @@ export default {
   },
   activated() {
     // 获取歌手信息
-    Request({
+    this.$Request({
       url: "/artist/detail",
       params: {
         id: this.$route.query.id,

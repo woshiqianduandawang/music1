@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import Request from '@/network/request'
 import ClassBoxVue from './ClassBox.vue'
 export default {
   name: 'SongSheet',
@@ -44,7 +43,7 @@ export default {
   },
   created() {
     // 请求歌单数据
-    Request({
+    this.$Request({
       url: '/top/playlist',
     }).then( ({data:{playlists:a}}) => {
       this.tags = a
@@ -57,7 +56,7 @@ export default {
       // 当$route.query.cat存在时才发送网络请求，防止闪烁
       if(newval){
         this.tags = '' //页面发生变化时，防止闪烁
-        Request({
+        this.$Request({
           url: '/top/playlist/highquality',
           params: {
             cat: this.$route.query.cat

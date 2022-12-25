@@ -77,7 +77,7 @@
               <!-- 遍历所有新碟的li -->
               <li v-for="(item, index) in monthData" :key="index" @click="jump(item.id)">
                 <img :src="item.picUrl + '?param=130y130'" alt="">
-                <img src="@/assets/img/background.png" alt="">
+                <img src="@/assets/img/song/background.png" alt="">
                 <p>{{item.name}}</p>
                 <p>{{item.artist.name}}</p>
               </li>
@@ -93,7 +93,6 @@
 <script>
 import Banner from './banner.vue'
 import List from './list.vue'
-import Request from '@/network/request'
 import Animation from '@/assets/js/animation-x-copy.js'
 export default {
     name: 'Suggest',
@@ -111,7 +110,7 @@ export default {
     },
     created() {
       // 请求歌单数据
-      Request({
+      this.$Request({
         url: '/top/playlist',
         params: {
           limit: 10
@@ -122,7 +121,7 @@ export default {
         alert('请求数据失败，请刷新重试！')
       })
       // 请求新碟数据
-      Request({
+      this.$Request({
         url: '/album/new',
         params: {
           type: 'hot',
@@ -147,7 +146,7 @@ export default {
       },
       // 新碟点击事件
       jump(id) {
-        Request({
+        this.$Request({
           url: '/album/detail/dynamic',
           params: {
             id: id
@@ -363,7 +362,7 @@ export default {
   }
   #a1-b1-c4 ol li img:nth-child(2){
     position:relative;
-    left: -86px;
+    left: -102px;
     z-index: 2;
   }
   #a1-b1-c4 ol li p:nth-last-child(2) {

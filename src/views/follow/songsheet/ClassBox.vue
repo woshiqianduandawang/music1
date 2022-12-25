@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import Request from '@/network/request'
 
 export default {
     name: 'ClassBox',
@@ -74,7 +73,7 @@ export default {
     },
     created() {
         // 请求歌单的分类
-        Request({
+        this.$Request({
           url: '/playlist/catlist',
         }).then( ({data:a}) => {
             // 根据category属性的不同将得到的数据分别放进对应的数组

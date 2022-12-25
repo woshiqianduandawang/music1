@@ -15,7 +15,8 @@ const My = () => import('@/views/my/my')
 const Shopping = () => import('@/views/shopping/shopping')
 const SearchContent = () => import('@/components/content/search/SearchContent')
 const Playlist = () => import('@/views/follow/songsheet/playlist')
-const Song = () => import('@/components/content/song') 
+const Song = () => import('@/components/content/song')
+const Album = () => import('@/components/content/album')
 
 Vue.use(Router)
 
@@ -87,6 +88,20 @@ const routes = [
         },
       },
       {
+        // 歌手专辑
+        path: 'album',
+        components: {
+          artist: () => import('@/views/follow/artist/ArtistPage/album')
+        },
+      },
+      {
+        // 歌手mv
+        path: 'mv',
+        components: {
+          artist: () => import('@/views/follow/artist/ArtistPage/mv')
+        },
+      },
+      {
         // 歌手介绍
         path: 'desc',
         components: {
@@ -129,9 +144,15 @@ const routes = [
     path: '/playlist',
     component: Playlist,
   },
+  // 歌曲详情页
   {
     path: '/song',
     component: Song
+  },
+  // 专辑详情
+  {
+    path: '/album',
+    component: Album
   }
 ]
 const router = new Router({

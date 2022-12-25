@@ -138,7 +138,6 @@
 </template>
 
 <script>
-import Request from "@/network/request";
 
 export default {
   name: "Artist",
@@ -166,7 +165,7 @@ export default {
   methods: {
     // 获取歌手数据
     GetClassSingers() {
-      Request({
+      this.$Request({
         url: "/artist/list",
         params: {
           type: this.$route.query.type ? this.$route.query.type : -1,

@@ -58,7 +58,6 @@
 </template>
 
 <script>
-import Request from "@/network/request";
 import Animation from "@/assets/js/animation-x";
 export default {
   name: "Banner",
@@ -73,7 +72,7 @@ export default {
   },
   created() {
     // 发送网络请求
-    Request({
+    this.$Request({
       url: "/banner",
       params: {
         type: 1,

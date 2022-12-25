@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import Request from "@/network/request";
 
 export default {
   name: "SingerDesc",
@@ -23,7 +22,7 @@ export default {
   methods: {
     Getdata() {
       // 获取歌手信息
-      Request({
+      this.$Request({
         url: "/artist/detail",
         params: {
           id: this.$route.query.id,

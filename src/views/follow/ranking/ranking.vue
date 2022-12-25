@@ -49,7 +49,6 @@
 
 <script>
 import mixincomputed from '@/common/mixin-computed'
-import Request from '@/network/request'
 
 export default {
     name: 'Ranking',
@@ -64,7 +63,7 @@ export default {
     },
     activated() {
       //获取榜单分类
-      Request({
+      this.$Request({
         url: '/toplist',
       }).then( ({data:{list:a}}) => {
         this.RankingData = a
@@ -86,7 +85,7 @@ export default {
         // 跳到页面最上端
         window.scroll(0,0)
         // 请求榜单数据
-        Request({
+        this.$Request({
           url: '/playlist/detail',
           params: {
             id: this.$route.query.id ?this.$route.query.id :19723756 

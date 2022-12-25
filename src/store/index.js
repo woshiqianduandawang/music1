@@ -8,7 +8,6 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     songs: '', //歌曲播放列表
-    // show: false, //什么用？
     song: '',  //歌曲信息
     index: '', //index决定播放哪首歌
     stoporplay: false, //播放器播放状态
@@ -19,15 +18,10 @@ export default new Vuex.Store({
     close(state, trueorfalse) {
       state.close = trueorfalse
     },
-    //什么用？
-    // notshow(state) {
-    //     state.show = true
-    // },
     PlayMusic(state, item) {
       state.songs = item.songs
       state.index = item.index
       state.show = true
-      state.playerif = true
 
       // 检查音乐是否可用
       Request({
@@ -49,9 +43,12 @@ export default new Vuex.Store({
               id: state.songs[state.index].id,
               level: 'lossless'
             }
-          }).then(({ data: { data: song } }) => state.song = song[0])
+          }).then(({ data: { data: song } }) => {
+            state.song = song[0]
+            state.playerif = true
+          })
             .catch(arr => {
-              alert('请求数据失败，请刷新重试！')
+              alert('请求歌曲url失败，请刷新重试！')
             })
         } else {
           // 歌曲不可用：

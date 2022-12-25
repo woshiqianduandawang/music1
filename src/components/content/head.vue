@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import Request from "@/network/request";
 import Search from "@/components/content/search/search.vue";
 import SigninVue from "@/components/content/signin.vue";
 export default {
@@ -43,10 +42,10 @@ export default {
   },
   methods: {
     cc() {
-      Request({
+      this.$Request({
         url: "/login/refresh",
       }).then((b) => console.log(b));
-      Request({
+      this.$Request({
         url: "/login/status",
       }).then((a) => console.log(a));
     },

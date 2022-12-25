@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import Request from '@/network/request'
 
 export default {
   name: 'Follow',
@@ -30,7 +29,7 @@ export default {
   methods: {
   },
   created() {
-    // Request({
+    // this.$Request({
     //   url: '/playlist/track/all',
     //   params: {
     //     id: 11972054

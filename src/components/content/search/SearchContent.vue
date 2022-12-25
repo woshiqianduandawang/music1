@@ -1,152 +1,247 @@
 <template>
-    <!-- 搜索结果页面 -->
-  <div v-if="searchif" id="search">
-    以下是搜索{{this.$route.query.content}}的结果：
-    <!-- 遍历搜索到的歌手 -->
-    <router-link id="SearchSingerBox" :to="{
-        path:'/artist-page',
-        query:{
-            id: singer.id
-        }
-    }" v-show="SingerShow" >
-        <img :src="singer.img1v1Url" alt="">
-        <span>{{singer.name}}</span>
-    </router-link>
-    <div id="bodyofhead">
-        <div>歌曲</div>
-        <div>歌手</div>
-    </div>
-    <!-- 遍历搜索歌曲 -->
-    <li v-for="(item, index) in songs" :key="index">
-        <p title="播放" @click="$store.commit('PlayMusic',{songs: songs, index: index})">{{item.name}}</p>
-        <router-link :to="{
+  <!-- 搜索结果页面 -->
+  <div id="SearchContent">
+    <followVue></followVue>
+    <div v-if="searchif" id="content">
+      以下是搜索{{ this.$route.query.content }}的结果：
+      <!-- 遍历搜索到的歌手 -->
+      <router-link
+        id="SearchSingerBox"
+        :to="{
           path: '/artist-page',
-          query: {data: item,id: item.ar[0].id}
-        }">
-            {{item.ar[0].name}}
-        </router-link>
-    </li>
+          query: {
+            id: singer.id,
+          },
+        }"
+        v-show="SingerShow"
+      >
+        <img :src="singer.img1v1Url" alt="" />
+        <span>{{ singer.name }}</span>
+      </router-link>
+      <table>
+        <tr>
+          <th></th>
+          <th><i>歌曲</i></th>
+          <th><i>时长</i></th>
+          <th><i>歌手</i></th>
+          <th><i>专辑</i></th>
+        </tr>
+        <tr v-for="(item, index) in songs" :key="index" id="tr">
+          <!-- 序号 -->
+          <td>
+            {{ index + 1 }}
+          </td>
+          <!-- 歌曲名 -->
+          <td>
+            <span
+              :title="item.name"
+              @click="
+                $store.commit('PlayMusic', { songs: songs, index: index })
+              "
+              >{{ OmitName(item.name, 16) }}</span
+            >
+          </td>
+
+          <td>
+            <!-- 歌曲时长 -->
+            <i>
+              {{ GetTime(item.dt / 1000 / 60) }}:
+              {{ GetTime((item.dt / 1000) % 60) }}
+            </i>
+          </td>
+          <td>
+            <!-- 拼接歌手名(如果有多个创作者) -->
+            <div v-for="(item2, inx) in item.ar" :key="inx">
+              <span @click="jump(item2.id)" :title="GetArName(item.ar)">
+                {{ item2.name }}
+              </span>
+              <strong v-if="inx < item.ar.length - 1">/</strong>
+            </div>
+          </td>
+          <!-- 所属专辑 -->
+          <td>
+            <span :title="item.al.name">{{ OmitName(item.al.name, 11) }}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
-import Request from '@/network/request'
-
+import mixincomputed from "@/common/mixin-computed";
+import followVue from "@/views/follow/follow.vue";
 export default {
-    name: 'SearchContent',
-    data() {
-        return {
-            songs: '', //搜索到的歌曲
-            singer: '', //搜索到的歌手
-            searchif: true, //是否重新渲染页面
-            SingerShow: false //是否显示搜索到的歌手
+  name: "SearchContent",
+  components: {
+    followVue,
+  },
+  mixins: [mixincomputed],
+  data() {
+    return {
+      songs: "", //搜索到的歌曲
+      singer: "", //搜索到的歌手
+      searchif: true, //是否重新渲染页面
+      SingerShow: false, //是否显示搜索到的歌手
+    };
+  },
+  activated() {
+    this.singer = "";
+    this.SingerShow = false;
+    this.searchif = false;
+    // 搜索结果-歌曲
+    this.$Request({
+      url: "/cloudsearch",
+      params: {
+        keywords: this.$route.query.content,
+      },
+    })
+      .then(
+        ({
+          data: {
+            result: { songs: a },
+          },
+        }) => {
+          this.songs = a;
+          this.searchif = true;
+          // console.log(a);
         }
-    },
-    activated() {
-        this.singer = ''
-        this.SingerShow = false
-        this.searchif = false
-        // 搜索结果-歌曲
-        Request({
-            url: '/cloudsearch', 
-            params: {
-                keywords: this.$route.query.content
-            }
-        }).then(({data:{result:{songs:a}}}) => {
-                this.songs = a
-                this.searchif = true
-                // console.log(a);
-        }).catch(arr =>{
-            alert('请求数据失败，请刷新重试！')
-        })
-        // 搜索结果-多重匹配
-        Request({
-            url: '/search/multimatch', 
-            params: {
-                keywords: this.$route.query.content
-            }
-        }).then(({data:{result:a}}) => {
-            console.log(a);
-            if(a.artist){
-                this.SingerShow = true
-                this.singer = a.artist[0]
-            }
-        }).catch(arr =>{
-            alert('请求数据失败，请刷新重试！')
-        })
-    },
-    methods: {
-    }
-}
+      )
+      .catch((arr) => {
+        alert("请求数据失败，请刷新重试！");
+      });
+    // 搜索结果-多重匹配
+    this.$Request({
+      url: "/search/multimatch",
+      params: {
+        keywords: this.$route.query.content,
+      },
+    })
+      .then(({ data: { result: a } }) => {
+        if (a.artist) {
+          this.SingerShow = true;
+          this.singer = a.artist[0];
+        }
+      })
+      .catch((arr) => {
+        alert("请求数据失败，请刷新重试！");
+      });
+  },
+  methods: {},
+};
 </script>
 
 <style scoped>
-#search{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1280px;
+#SearchContent {
+  position: relative;
 }
-#SearchSingerBox{
-    display: block;
-    padding-top: 20px ;
-    width: 150px;
-    height: 150px;
-    text-align: center;
+#content {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1280px;
 }
-#SearchSingerBox span{
-    display: block;
+#SearchSingerBox {
+  display: block;
+  padding-top: 20px;
+  width: 150px;
+  height: 150px;
+  text-align: center;
 }
-#SearchSingerBox span:hover{
-    text-decoration:underline ;
+#SearchSingerBox span {
+  display: block;
 }
-#SearchSingerBox img{
-    border-radius: 50px;
-    width: 100px;
-    height: 100px;
-    text-align: center;
+#SearchSingerBox span:hover {
+  text-decoration: underline;
 }
-#bodyofhead{
-    height: 25px;
-    font-weight: 700;
+#SearchSingerBox img {
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
 }
-#bodyofhead div:nth-child(1){
-    position: absolute;
-    left: 20px;
+/* 歌曲 */
+table {
+  display: block;
+  position: relative;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  border-top: 0;
+  border-collapse: collapse;
+  width: 840px;
 }
-#bodyofhead div:nth-child(2){
-    position: absolute;
-    left: 50%;
+tr:nth-child(2n-1) {
+  background-color: rgb(237, 237, 237);
 }
-li{
-    padding: 5px;
-    padding-left: 20px;
-    height: 30px;
-    font-size: 20px;
-    list-style: none;
+#tr:hover {
+  background-color: rgb(123, 123, 123);
+  color: rgb(234, 234, 234);
 }
-
-li:nth-child(2n){
-    background-color: rgb(234, 234, 234);
+th {
+  box-shadow: 0px 2px 5px rgb(0, 0, 0, 0.1);
+  line-height: 42px;
+  background-color: rgb(232, 232, 232);
 }
-li:hover{
-    background-color: rgb(199, 199, 199);
+th:nth-child(1) {
+  height: 42px;
 }
-p{
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
+/* 歌曲列表table的表头和时长数字 */
+table i {
+  float: left;
 }
-p:hover{
-    color: #fff;
+th,
+td {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 20px;
+  overflow: hidden;
 }
-li a{
-    position: absolute;
-    left: 50%;
-    text-decoration: none;
-    color: black;
+th {
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  border-right: 0;
 }
-li a:hover{
-    color: #fff;
+th:nth-child(1),
+td:nth-child(1) {
+  border-left: 0;
+  padding: 0;
+  text-align: center;
+  width: 50px;
+}
+th:nth-child(3),
+td:nth-child(3) {
+  padding-left: 22px;
+  width: 80px;
+  text-align: center;
+  box-sizing: border-box;
+}
+th:nth-child(2),
+td:nth-child(2) {
+  width: 236px;
+}
+th:nth-child(4),
+td:nth-child(4) {
+  width: 222px;
+}
+th:nth-child(5),
+td:nth-child(5) {
+  width: 187px;
+}
+table span:hover,
+table p:hover {
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
+}
+table div {
+  display: inline-block;
+}
+table span {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+}
+td strong {
+  font-size: 20px;
+  font-weight: 400;
 }
 </style>

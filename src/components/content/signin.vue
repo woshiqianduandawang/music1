@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import Request from "@/network/request";
 export default {
   name: "Signin",
   data() {
@@ -53,7 +52,7 @@ export default {
       this.$store.commit("close", false);
     },
     query() {
-      Request({
+      this.$Request({
         url: "/login/qr/check",
         params: {
           key: this.key,
@@ -63,7 +62,7 @@ export default {
         .catch((arr) => {
           alert("请求数据失败，请刷新重试！");
         });
-      Request({
+      this.$Request({
         url: "/login/status",
       })
         .then((c) => console.log(c))
@@ -82,7 +81,7 @@ export default {
       // 正则表达式匹配正确的手机号码
       if (this.regexp.test(this.phone)) {
         // 发送网络请求
-        Request({
+        this.$Request({
           url: "/captcha/sent",
           params: {
             phone: this.phone,
@@ -120,7 +119,7 @@ export default {
       if (this.regexp.test(this.phone)) {
         if (captcha.length == 4) {
           // 发送网络请求
-          Request({
+          this.$Request({
             url: "/captcha/verify",
             params: {
               phone: this.phone,
@@ -138,7 +137,7 @@ export default {
     },
   },
   mounted() {
-    Request({
+    this.$Request({
       url: "/login/qr/key",
     })
       .then(
@@ -148,7 +147,7 @@ export default {
           },
         }) => {
           this.key = key;
-          Request({
+          this.$Request({
             url: "/login/qr/create",
             params: {
               key: key,
@@ -161,7 +160,7 @@ export default {
               },
             }) => {
               this.qrimgurl = b;
-              Request({
+              this.$Request({
                 url: "/login/qr/check",
                 params: {
                   key: key,

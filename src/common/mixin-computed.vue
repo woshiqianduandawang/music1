@@ -1,38 +1,39 @@
-<template>
-  
-</template>
+<template></template>
 
 <script>
 export default {
-  name: 'mixin-OmitName',
+  name: "mixin-OmitName",
   data() {
     return {
       sinogram: /[\u4e00-\u9fa5]/, //汉字的正则
       letter: /[a-zA-Z]/, //字母的正则
-    }
+    };
   },
   computed: {
-
     // 时间戳的转换
     GetYear() {
       // 年
-      return this.date.getFullYear() + "-";
+      return function (date) {
+        return date.getFullYear() + "-";
+      };
     },
     GetMonths() {
       // 月
-      return (
-        (this.date.getMonth() + 1 < 10
-          ? "0" + (this.date.getMonth() + 1)
-          : this.date.getMonth() + 1) + "-"
-      );
+      return function (date) {
+        return (
+          (date.getMonth() + 1 < 10
+            ? "0" + (date.getMonth() + 1)
+            : date.getMonth() + 1) + "-"
+        );
+      };
     },
     GetDay() {
       // 日
-      return (
-        (this.date.getDate() < 10
-          ? "0" + this.date.getDate()
-          : this.date.getDate()) + " "
-      );
+      return function (date) {
+        return (
+          (date.getDate() < 10 ? "0" + date.getDate() : date.getDate()) + " "
+        );
+      };
     },
 
     // 省略过长的字符串
@@ -67,9 +68,8 @@ export default {
       };
     },
   },
-}
+};
 </script>
 
 <style>
-
 </style>

@@ -17,7 +17,7 @@
               <div>
                 <p>{{ detail.creator.nickname }}</p>
                 <!-- 创建时间 -->
-                <span>{{ GetYear }}{{ GetMonths }}{{ GetDay }} 创建</span>
+                <span>{{ GetYear(date) }}{{ GetMonths(date) }}{{ GetDay(date) }} 创建</span>
               </div>
               <div>
                 标签：
@@ -93,7 +93,6 @@
 <script>
 import mixincomputed from '@/common/mixin-computed'
 import Follow from "@/views/follow/follow";
-import Request from "@/network/request";
 
 export default {
   name: "Playlist",
@@ -115,7 +114,7 @@ export default {
   },
   activated() {
     // 获取歌单歌曲
-    Request({
+    this.$Request({
       url: "/playlist/track/all",
       params: {
         id: this.$route.query.id,
@@ -129,7 +128,7 @@ export default {
         alert("请求数据失败，请刷新重试！");
       });
     //获取歌单详情
-    Request({
+    this.$Request({
       url: "/playlist/detail",
       params: {
         id: this.$route.query.id,
@@ -165,13 +164,13 @@ export default {
         this.OpenEl.style.height = "100%";
       } else {
         this.$refs.open.innerHTML = "展开";
-        this.OpenEl.style.height = 124 + "px";
+        this.OpenEl.style.height = 125 + "px";
       }
     },
   },
   updated() {
     this.OpenEl = document.querySelector("#intro");
-    if (this.OpenEl.offsetHeight < this.OpenEl.scrollHeight) {
+    if (this.OpenEl.clientHeight < this.OpenEl.scrollHeight) {
       this.open = true;
     }
   },
@@ -221,7 +220,7 @@ export default {
   top: 80px;
   left: 180px;
   width: 550px;
-  height: 124px;
+  height: 125px;
   line-height: 25px;
   overflow: hidden;
 }
@@ -282,7 +281,7 @@ export default {
   width: 60px;
   height: 30px;
   cursor: pointer;
-  background-color: rgb(131, 131, 131);
+  background-color: rgb(60, 137, 210);
   color: #fff;
 }
 /* 歌曲 */

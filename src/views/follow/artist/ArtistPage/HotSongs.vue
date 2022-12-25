@@ -24,7 +24,7 @@
         </td>
         <!-- 所属专辑 -->
         <td>
-          <span :title="item.al.name">{{ OmitName(item.al.name, 16) }}</span>
+          <span :title="item.al.name">{{ OmitName(item.al.name, 14) }}</span>
         </td>
       </tr>
     </table>
@@ -33,7 +33,6 @@
 
 <script>
 import mixincomputed from '@/common/mixin-computed'
-import Request from "@/network/request";
 
 export default {
   name: "HotSongs",
@@ -48,7 +47,7 @@ export default {
   methods: {
     // 获取歌手歌曲
     GetSongs() {
-      Request({
+      this.$Request({
         url: "/artist/songs",
         params: {
           id: this.$route.query.id,

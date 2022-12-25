@@ -115,7 +115,6 @@
 </template>
 
 <script>
-import Request from "@/network/request";
 import mixincomputed from '@/common/mixin-computed'
 
 export default {
@@ -131,7 +130,7 @@ export default {
   created() {
     //榜单数据
     //飙升榜
-    Request({
+    this.$Request({
       url: "/playlist/detail",
       params: {
         id: 19723756,
@@ -145,7 +144,7 @@ export default {
       });
 
     //新歌榜
-    Request({
+    this.$Request({
       url: "/playlist/detail",
       params: {
         id: 3779629,
@@ -159,7 +158,7 @@ export default {
       });
 
     //原创榜
-    Request({
+    this.$Request({
       url: "/playlist/detail",
       params: {
         id: 2884035,
