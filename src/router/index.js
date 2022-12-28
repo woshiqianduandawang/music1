@@ -158,7 +158,7 @@ const routes = [
 const router = new Router({
   routes,
   linkActiveClass: 'active',
-  mode: 'history'
+  // mode: 'history'
 })
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
