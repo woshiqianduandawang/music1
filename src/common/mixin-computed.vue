@@ -5,8 +5,6 @@ export default {
   name: "mixin-OmitName",
   data() {
     return {
-      sinogram: /[\u4e00-\u9fa5]/, //汉字的正则
-      letter: /[a-zA-Z]/, //字母的正则
     };
   },
   computed: {
