@@ -11,6 +11,13 @@
 <script>
 import Hade from './components/content/head.vue'
 import Player from '@/components/content/player';
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+// 执行相应代码或直接跳转到手机页面
+alert('手机')
+} else {
+alert('桌面')
+// 执行桌面端代码
+}
 
 export default {
   name: 'App',
