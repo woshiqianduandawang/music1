@@ -223,6 +223,10 @@ li {
   top: 50%;
   left: -50px;
 }
+ul img{
+  width: 1080px;
+  height: 420px;
+}
 /* 装小药丸按钮的ol */
 #active {
   display: flex;
