@@ -24,6 +24,4 @@ if (
   window.location.href = "https://miniccmusic.netlify.app/";
 } else {
   // 执行桌面端代码
-  console.log('桌面');
-  window.location.href = "https://ccmusic.netlify.app/";
 }
