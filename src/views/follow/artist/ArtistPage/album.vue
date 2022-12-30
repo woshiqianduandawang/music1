@@ -52,7 +52,6 @@ export default {
           console.log({ data: a });
         })
         .catch((arr) => {
-          alert("请求数据失败，请刷新重试！");
         });
     },
   },
@@ -68,7 +67,6 @@ export default {
         console.log(a);
       })
       .catch((arr) => {
-        alert("请求数据失败，请刷新重试！");
       });
   },
 };

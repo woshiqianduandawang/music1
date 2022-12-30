@@ -38,7 +38,6 @@ export default {
           }
         )
         .catch((arr) => {
-          alert("请求数据失败，请刷新重试！");
         });
     },
   },

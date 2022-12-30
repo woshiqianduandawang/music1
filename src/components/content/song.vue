@@ -106,7 +106,6 @@ export default {
           }
         )
         .catch((arr) => {
-          alert("请求数据失败，请刷新重试！");
         });
 
       // 获取歌曲信息
@@ -121,7 +120,6 @@ export default {
           this.ruin = true;
         })
         .catch((arr) => {
-          alert("请求歌曲信息失败，请刷新重试！");
         });
 
       // 获取歌曲评论

@@ -145,7 +145,6 @@ export default {
         this.albumif = true;
       })
       .catch((arr) => {
-        alert("请求专辑信息失败，请刷新重试！");
       });
     // 获取专辑评论
     this.$Request({

@@ -68,7 +68,6 @@ export default {
       }).then( ({data:{list:a}}) => {
         this.RankingData = a
       }).catch( arr =>{
-        alert('请求数据失败，请刷新重试！')
       })
       // 请求默认加载的飙升榜
       this.Getdata()
@@ -95,7 +94,6 @@ export default {
           // 设置title
           document.title = '榜单-' + this.list.name
         }).catch( arr =>{
-          alert('请求数据失败，请刷新重试！')
         })
       },
       router(id) {

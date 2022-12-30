@@ -140,7 +140,6 @@ export default {
         this.soar = a;
       })
       .catch((arr) => {
-        alert("请求数据失败，请刷新重试！");
       });
 
     //新歌榜
@@ -154,7 +153,6 @@ export default {
         this.NewSong = a;
       })
       .catch((arr) => {
-        alert("请求数据失败，请刷新重试！");
       });
 
     //原创榜
@@ -168,7 +166,6 @@ export default {
         this.original = a;
       })
       .catch((arr) => {
-        alert("请求数据失败，请刷新重试！");
       });
   },
 };
