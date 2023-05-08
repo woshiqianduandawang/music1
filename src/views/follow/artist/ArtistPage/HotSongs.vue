@@ -47,6 +47,7 @@ export default {
   methods: {
     // 获取歌手歌曲
     GetSongs() {
+      this.$store.state.mask = true
       this.$Request({
         url: "/artist/songs",
         params: {
@@ -56,6 +57,7 @@ export default {
         .then(({ data: { songs: songss } }) => {
           this.songs = songss;
           this.show = true;
+          this.$store.state.mask = false
         })
         .catch((arr) => {
         });

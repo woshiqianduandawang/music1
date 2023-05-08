@@ -42,11 +42,13 @@ export default {
     }
   },
   created() {
+    this.$store.state.mask = true
     // 请求歌单数据
     this.$Request({
       url: '/top/playlist',
     }).then( ({data:{playlists:a}}) => {
       this.tags = a
+      this.$store.state.mask = false
     }).catch(arr =>{
       alert('请求数据失败，请刷新重试！')
     })
@@ -67,8 +69,6 @@ export default {
           alert('请求数据失败，请刷新重试！')
         })
       }
-      
-      
     }
   },
   methods: {

@@ -165,5 +165,6 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title
   }
   next()
+  // document.querySelector('#mask').style.display = 'block'
 })
 export default router

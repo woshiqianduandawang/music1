@@ -12,7 +12,8 @@ export default new Vuex.Store({
     index: '', //index决定播放哪首歌
     stoporplay: false, //播放器播放状态
     playerif: false, //是否创建播放器
-    close: false //登陆界面是否弹出
+    close: false, //登陆界面是否弹出
+    mask: true
   },
   mutations: {
     close(state, trueorfalse) {

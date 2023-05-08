@@ -152,7 +152,6 @@ export default {
       unwatch: "",
     };
   },
-  components: {},
   activated() {
     document.title = this.title;
     // 获取歌手数据
@@ -165,6 +164,7 @@ export default {
   methods: {
     // 获取歌手数据
     GetClassSingers() {
+      this.$store.state.mask = true
       this.$Request({
         url: "/artist/list",
         params: {
@@ -175,6 +175,7 @@ export default {
       })
         .then(({ data: { artists: ClassSinger } }) => {
           this.ClassSingers = ClassSinger;
+          this.$store.state.mask = false
         })
         .catch((arr) => {
           alert("请求数据失败，请刷新重试！");

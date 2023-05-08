@@ -121,6 +121,7 @@ export default {
       },
       // 跳转到某分类下的歌单
       jump(name) {
+        this.$store.state.mask = true
         this.$router.push({
           path: '/follow/songsheet',
           query: {

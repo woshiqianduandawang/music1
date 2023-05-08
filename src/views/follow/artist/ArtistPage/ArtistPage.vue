@@ -1,15 +1,11 @@
 <template>
-  <div id="ArtistPage" v-if="templateif">
+  <div id="ArtistPage">
     <followVue></followVue>
-    <div id="ArtistBox">
+    <div id="ArtistBox" v-show="show">
       <div id="left">
         <h1>{{ SingerData.artist.name }}</h1>
         <div id="imgbox">
-          <img
-            v-if="imgif"
-            :src="SingerData.artist.cover + '?param=640y300'"
-            alt=""
-          />
+          <img :src="SingerData.artist.cover + '?param=640y300'" alt="" />
         </div>
         <div id="RouterBox">
           <router-link
@@ -65,13 +61,13 @@ export default {
   data() {
     return {
       SingerData: "",
-      templateif: false,
-      imgif: false,
+      show: true,
     };
   },
-  methods: {
-  },
+  methods: {},
+  created() {},
   activated() {
+    this.$store.state.mask = true;
     // 获取歌手信息
     this.$Request({
       url: "/artist/detail",
@@ -81,16 +77,13 @@ export default {
     })
       .then(({ data: { data: a } }) => {
         this.SingerData = a;
+        this.show = true
         document.title = a.artist.name + " " + a.identify.imageDesc;
-        this.imgif = true;
-        this.templateif = true;
       })
-      .catch((arr) => {
-      });
+      .catch((arr) => {});
   },
   deactivated() {
-    this.imgif = false;
-    this.templateif = false;
+    this.show = false;
   },
 };
 </script>
@@ -109,7 +102,7 @@ export default {
   width: 1280px;
   box-sizing: border-box;
 }
-#left{
+#left {
   position: relative;
   padding: 30px;
   width: 700px;

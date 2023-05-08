@@ -62,6 +62,7 @@ export default {
       }
     },
     activated() {
+      this.$store.state.mask = true
       //获取榜单分类
       this.$Request({
         url: '/toplist',
@@ -91,12 +92,15 @@ export default {
           }
         }).then( ({data:{playlist:a}}) => {
           this.list = a
+          this.$store.state.mask = false
           // 设置title
           document.title = '榜单-' + this.list.name
         }).catch( arr =>{
         })
       },
       router(id) {
+        this.$store.state.mask = true
+
         // 榜单分类按钮跳转
         this.$router.push({
           path: '/follow/ranking',

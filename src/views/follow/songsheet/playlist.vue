@@ -1,8 +1,8 @@
 <template>
   <!-- 歌单页面 -->
-  <div id="playlist" v-if="ruin">
+  <div id="playlist">
     <Follow></Follow>
-    <div id="content">
+    <div id="content" v-if="ruin">
       <div id="a1">
         <div id="detail">
           <!-- 歌单头像 -->
@@ -113,6 +113,7 @@ export default {
     };
   },
   activated() {
+    this.$store.state.mask = true
     // 获取歌单歌曲
     this.$Request({
       url: "/playlist/track/all",
@@ -123,6 +124,7 @@ export default {
       .then(({ data: { songs: a } }) => {
         this.songs = a;
         this.ruin = true;
+        this.$store.state.mask = false
       })
       .catch((arr) => {
         alert("请求数据失败，请刷新重试！");
